@@ -11,7 +11,7 @@ github-repo: bertozzivill/data-science-book
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
 
-# Annoying First Chapter to make into Preface
+# Preface {-}
 
 Index file for bookdown book.  Does this text actually show up anywhere?
 
