@@ -1,14 +1,16 @@
 
 # What is Data Science?
 
+```{r setup, include=FALSE}
+library(knitr)
+```
+
 ## What Is Data?
 Before I give you my own definition of 'data', take a minute to think up your own. What defines something as 'data' for you?
 
 ---------
-
-
-`r knitr::include_graphics("figures/data.jpg") `
-
+**TODO: check copyright on googled images**
+`r knitr::include_graphics("module_1/figures/data.jpg")`
 
 Figure 1: Top Google Image result for "data"
 
@@ -29,32 +31,32 @@ Let's break that down:
 ## What Is Data Science?
 Practically speaking 'data science' is a blanket term that was coined when researchers from a lot of different quantitative fields (statistics, computer science, applied mathematics, computational biology, business, etc) realized that they were all working on similar problems-- as the everyday practices of these industries became more and more data-rich, everybody started needing to share tools to effectively process and understand that data. And so the term 'data science' was born. 
 
-Data science can be defined as the systematic analysis and visualization of data, using a variety of quantitative tools. Fundamentally, data science is about finding patterns in the data we collect, and interpreting what those patterns mean.
+Data science can be defined as the **systematic analysis** and **visualization** of data, using a variety of quantitative tools. Fundamentally, data science is about **finding patterns** in the data we collect, and interpreting what those patterns mean.
 
-`r knitr::include_graphics("figures/data_science.png") `
-
+`r knitr::include_graphics("module_1/figures/data-science.png")`
 Figure 2: Almost-top Google Image result for 'data science'
 
- 
+
 
 ## Why Is Data Science Useful?
+**TODO: modify for generic reader **
 In this day and age, this question seems almost trite-- we need data for EVERYTHING! But it's worth thinking about. What benefit does this focus on data bring us? Let's start with an example close to home: you. 
 
 Here's what I know about you so far. A little less than half of you are actually residential students, even though you're taking this course online:
 
-status.png
+`r knitr::include_graphics("module_1/figures/status.png")`
 
 And if you're an MSIM student, you're far more likely to be one of those residential folks:
 
- status_by_program.png
+`r knitr::include_graphics("module_1/figures/status_by_program.png")`
 
 A little more than half of you have some kind of programming background, and almost none of you have stats backgrounds above the undergraduate level (which is great! You're the people this class is designed for):
 
-programming_stats_stacked.png
+`r knitr::include_graphics("module_1/figures/programming_stats_stacked.png")`
 
 Finally, almost all of you are American:
 
-nationality.png
+`r knitr::include_graphics("module_1/figures/nationality.png")`
 
  
 
@@ -65,73 +67,75 @@ This is the power of data science-- by critically collecting and analyzing infor
  
 
 ## Understanding Datasets
-A dataset is just a special type of spreadsheet: It has rows representing some observation, and columns that list the recorded attributes of that observation. A typical dataset might look like this (this is just the first and last five rows):
+**TODO: replace dataset screenshots with inline R**
+A dataset is just a special type of spreadsheet: It has rows representing some observation, and columns that list the recorded **attributes** of that observation. A typical dataset might look like this (this is just the first and last five rows):
 
-salaries_dataset
+`r knitr::include_graphics("module_1/figures/salaries_dataset.png")`
 
  Even though we know nothing about where or how this dataset was collected, we can already make a lot of good guesses about it. Here it looks like every observation represents a single person-- a professor or instructor at a university-- and the columns show elements about that person's profession that researchers might find interesting-- his/her rank, field of study, years since Ph.D, "years of service", sex, and salary. It also leaves us with some unanswered questions that will be relevant to our understanding of the dataset: what year was this data collected? From which university? What is "discipline B"? Does "years of service" mean the number of years the professor has worked at this university specifically, or the number of years he/she has been in the field overall?
 
-These questions can typically all be answered by the documentation that accompanies most publicly available datasets. This documentation, ideally, will describe the background of the data, the data collection process, and will explicitly define every column and what its values mean. More on that later. 
+These questions can typically all be answered by the **documentation** that accompanies most publicly available datasets. This documentation, ideally, will describe the background of the data, the data collection process, and will explicitly define every column and what its values mean. More on that later. 
 
- 
 
 Let's try a different example. What does a single row of this dataset represent?
 
-un_dataset
-
- 
+`r knitr::include_graphics("module_1/figures/un_dataset.png")`
 
 This is an easy one-- each row is a country, and the columns show the name, GDP (gross domestic product, an economic measurement), and infant mortality rate in that country. But there's another interesting component to this dataset, do you see it?
 
-Yup, those weird "NA" values you see in American Samoa, Andorra, and Western Sahara. Those indicate missing data-- places where whoever collected the data could not find a reliable value to put in that space. So, they effectively leave it blank. Understanding how to deal with missing data is a vital part of a data scientist's day-to-day life, but is beyond the scope of this class. If you encounter missing values in a dataset you're working with, for the purposes of this course you can simply ignore those observations.
+Yup, those weird "NA" values you see in American Samoa, Andorra, and Western Sahara. Those indicate **missing data**-- places where whoever collected the data could not find a reliable value to put in that space. So, they effectively leave it blank. Understanding how to deal with missing data is a vital part of a data scientist's day-to-day life, but is beyond the scope of this class. If you encounter missing values in a dataset you're working with, for the purposes of this course you can simply ignore those observations.
 
  
 
 One other example! What is a row in this dataset?
 
-suicide_dataset 
+`r knitr::include_graphics("module_1/figures/suicide_dataset.png")`
 
 At first you might think that each row here still represents a single person, but that's not the case. Take a look at the first 18 rows:
 
-suicide_subset
+`r knitr::include_graphics("module_1/figures/suicide_subset.png")`
 
- Notice how the first 9 rows look very similar to the second 9, with the only difference being the age group and associated "Freq" count? In this dataset, a single row represents a subset of the population. The first row, for example, represents all 10-14 year old males who committed suicide using poison. The "Freq" column tells us how many such young men there were: 4. Similarly, row 10 tells us that there were 348 such suicides for the same method, but for 15-19 year old males. 
+ Notice how the first 9 rows look very similar to the second 9, with the only difference being the age group and associated "Freq" count? In this dataset, **a single row represents a subset of the population**. The first row, for example, represents all 10-14 year old males who committed suicide using poison. The "Freq" column tells us how many such young men there were: 4. Similarly, row 10 tells us that there were 348 such suicides for the same method, but for 15-19 year old males. 
 
-This type of dataset is extremely common, especially when you're looking at demographic data for countries. Don't get confused!
+This type of dataset is extremely common, especially when you're looking at demographic data for countries. It's called **binned** data because it gives the summary statistics of people in different "bins" of age, sex, etc. instead of giving the individual-level **microdata**. 
+
+You can spot binned data with the following signs:
+
+*There is a column titled "frequency", "number", "count", etc-- something that refers to the size of any one bin;
+*The dataset is highly structured, with repeated row names that change only in the value of the binned variable and the value of the count variable;
+*The documentation says the data is binned.
 
  
 
 ### A Special Dataset Component: Time
-Time is ALWAYS relevant to whatever dataset you're looking at, but its importance can take different forms. In terms of time, there are two primary types of dataset: cross-sectional and longitudinal. 
+Time is ALWAYS relevant to whatever dataset you're looking at, but its importance can take different forms. In terms of time, there are two primary types of dataset: **cross-sectional** and **longitudinal**. 
 
-Cross-sectional data show you a snapshot in time: what was the population of each US state in 2010? What did telephone survey respondents think about your product last week? How many people in each major city acquired HIV this year? All of the datasets we've looked at so far are cross-sectional. Time usually doesn't appear explicitly in cross-sectional datasets, but it's vital for putting the data in context. You would draw very different conclusions about the "Salaries" dataset if its contents were collected in 1985 than if they were collected in 2015. Always make sure you understand what time period your data comes from. 
+**Cross-sectional** data show you a snapshot in time: what was the population of each US state in 2010? What did telephone survey respondents think about your product last week? How many people in each major city acquired HIV this year? All of the datasets we've looked at so far are cross-sectional. Time usually doesn't appear explicitly in cross-sectional datasets, but it's vital for putting the data in context. You would draw very different conclusions about the "Salaries" dataset if its contents were collected in 1985 than if they were collected in 2015. Always make sure you understand what time period your data comes from. 
 
-In longitudinal data, time is explicitly part of the dataset. Longitudinal data, also called panel data, takes multiple observations of the same thing(s) over time. Here's an example: a dataset that tracks traffic fatalities and drunk driving laws by state and year in the US. Notice the first two columns in particular.
+In **longitudinal** data, time is explicitly part of the dataset. Longitudinal data, also called **panel data**, takes multiple observations of the same thing(s) over time. Here's an example: a dataset that tracks traffic fatalities and drunk driving laws by state and year in the US. Notice the first two columns in particular.
 
-traffic_dataset
+`r knitr::include_graphics("module_1/figures/traffic_dataset.png")`
 
-Here each row of the dataset is a state-year. Longitudinal data is a powerful tool in understanding what drives change: do traffic fatalities drop when a new drunk driving law is implemented? Are similar laws equally effective in different states?
+Here each row of the dataset is a **state-year**. Longitudinal data is a powerful tool in understanding what drives change: do traffic fatalities drop when a new drunk driving law is implemented? Are similar laws equally effective in different states?
 
 When you're working with longitudinal datasets, you should ALWAYS explicitly incorporate time into your analysis. More on that in our statistics and regressions sections. 
 
  
 
 ## How Is Data Collected?
-One of the most common methods for data collection is a survey: within your population of interest, you pick a (usually random) subset of people and ask them questions about whatever you're interested in. This gives you data for those individuals, and if you've set up your survey properly, you should be able to extrapolate those findings to the population as a whole. Survey methods are used to come up with almost every news story you read: when you hear that "millenials are having less sex than any previous generation in the last 60 years", what that means is that researchers phoned (or emailed, or otherwise contacted) a random set of millenials, asked them about their sexual history, found the average number of partners for those people, and assumed that rate applies to the millenial population as a whole. 
+One of the most common methods for data collection is a **survey**: within your population of interest, you pick a (usually random) subset of people and ask them questions about whatever you're interested in. This gives you data for those individuals, and if you've set up your survey properly, you should be able to extrapolate those findings to the population as a whole. Survey methods are used to come up with almost every news story you read: when you hear that ["millenials are having less sex than any previous generation in the last 60 years"](https://www.washingtonpost.com/local/social-issues/there-isnt-really-anything-magical-about-it-why-more-millennials-are-putting-off-sex/2016/08/02/e7b73d6e-37f4-11e6-8f7c-d4c723a2becb_story.html?noredirect=on&utm_term=.7ae84392b77e), what that means is that researchers phoned (or emailed, or otherwise contacted) a random set of millenials, asked them about their sexual history, found the average number of partners for those people, and assumed that rate applies to the millenial population as a whole. 
 
-As you might imagine, it's very easy to mess up the survey process. The specific people you survey, the type of question you ask, the way you ask the question... all of these, and more, can seriously bias survey results away from the true thing you're trying to find.
+As you might imagine, it's very easy to mess up the survey process. The specific people you survey, the type of question you ask, the way you ask the question... all of these, and more, can seriously **bias** survey results away from the true thing you're trying to find.
 
-And it's hard to write a survey that's fun to take and doesn't have any errors: many of you noticed a problem in the intro survey you took, where you were forced to submit an answer for "what programming languages do you know" even if in a previous question you said you didn't know any. I did that on purpose to show you how frustrating a mistake in a survey can be. Sorry. 
+A close relative of a survey is a **census**. With censuses, you're still contacting people directly and asking them questions, but there are two big differences: you contact EVERYBODY in the region (usually a country), and they're usually required by law to answer. So you have to worry a lot less about whether or not the population you survey lines up with the real population, because the two should be the same. 
 
-A close relative of a survey is a census. With censuses, you're still contacting people directly and asking them questions, but there are two big differences: you contact EVERYBODY in the region (usually a country), and they're usually required by law to answer. So you have to worry a lot less about whether or not the population you survey lines up with the real population, because the two should be the same. 
+Surveys and censuses are both methods of collecting cross-sectional data. Longitudinal data is most often collected through a process called **surveillance**. There are a few different kinds: passive, active, and continuous. 
 
-Surveys and censuses are both methods of collecting cross-sectional data. Longitudinal data is most often collected through a process called surveillance. There are a few different kinds: passive, active, and continuous. 
+**Passive** surveillance is the process of recording events as they present themselves to you. For example, hospitals collect data on every patient they see, but you have to explicitly seek hospital care in order to be included in hospital records. 
 
-Passive surveillance is the process of recording events as they present themselves to you. For example, hospitals collect data on every patient they see, but you have to explicitly seek hospital care in order to be included in hospital records. 
+**Active** surveillance is when you're interested in a specific event, and you specifically go seek out that event. For example, researchers in malaria-endemic countries will often go door-to-door to test children for malaria. This is active surveillance. It's used primarily in health care settings.
 
-Active surveillance is when you're interested in a specific event, and you specifically go seek out that event. For example, researchers in malaria-endemic countries will often go door-to-door to test children for malaria. This is active surveillance. It's used primarily in health care settings.
-
-Continuous surveillance required the internet to really take off, though it has existed forever. This is simply the constant, administrative collection of data. Google recording your location and web history, Amazon recording your purchasing patterns, your bank recording your transactions... these are all forms of continuous surveillance. The vast majority of data science for business is parsing and analyzing data collected via this method. 
+**Continuous** surveillance required the internet to really take off, though it has existed for most (if not all) of written history. This is simply the constant, administrative collection of data. Google recording your location and web history, Amazon recording your purchasing patterns, your bank recording your transactions... these are all forms of continuous surveillance. The vast majority of data science for business is parsing and analyzing data collected via this method. 
 
  
 
@@ -144,9 +148,8 @@ Hopefully your dataset is engaging enough that this process happens automaticall
 
 For a richer dataset like the traffic fatalities one, there are many more questions to ask. What impact does drinking age have on traffic fatalities? Do higher taxes on beer lead to fewer fatalities? Does per-capita income affect traffic deaths? Remember, because it's a longitudinal dataset, all of these questions implicitly include time as well. 
 
+**todo**: revisit this, it denigrates exploratory analyses
 A good data science question should be clear, concise, and within the scope of your dataset to answer. It shouldn't include vague terms about what variables "look like" or about "what variables impact [x]". They should clearly, explicitly state what relationship within the dataset you're interested in exploring. The simplest data science questions only ask how two columns of the dataset are related, but that doesn't have to be the case. For example, in the suicide dataset, one might ask "What methods of suicide are most used in different sexes and age groups?" This question meets all the requirements of a good question, while incorporation all four columns of the dataset. 
 
-You'll get practice asking data science questions in Essay 1. 
-
-Once you have some good starting questions in your dataset, you can start gauging the answers with exploratory plotting. We'll talk more about that in Module 2.
+Once you have some good starting questions in your dataset, you can start gauging the answers with **exploratory plotting**. We'll talk more about that in Module 2.
 
