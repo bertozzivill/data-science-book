@@ -3,6 +3,7 @@
 
 ```{r setup, include=FALSE}
 library(knitr)
+figure_dir <- "module_1/figures"
 ```
 
 ## What Is Data?
@@ -10,7 +11,9 @@ Before I give you my own definition of 'data', take a minute to think up your ow
 
 ---------
 **TODO: check copyright on googled images**
-`r knitr::include_graphics("module_1/figures/data.jpg")`
+```{r, echo=F}
+knitr::include_graphics(file.path(figure_dir, "data.jpg"))
+```
 
 Figure 1: Top Google Image result for "data"
 

@@ -1,18 +1,17 @@
----
-title: "Getting Started With R"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+ 
+# Getting Started With R
 
 ```{r message=F, warning=F, echo=F}
 library(data.table)
+figure_dir <- "module_3/figures"
+make_fig <- function(fname, dir=figure_dir){
+  knitr::include_graphics(file.path(dir, fname))
+}
 ```
 
 ## Installing R
 
+**todo: warn about latest version of R with data.table**
 1. Visit the [R download](https://cran.r-project.org/) page.
 2. Click the "Download" link for your operating system.
 3. Click the "base" link.
@@ -32,12 +31,14 @@ library(data.table)
 An application called "RStudio" should now exist on your computer. Open it! (The easiest way to find it is by searching, using the search bar available in the "Start" button on Windows or by pressing "CMD-Space" on OSX.)
 
 Once opened, you should see this:
-[insert 3-tab screen here]
+
+`r make_fig("intro_rstudio.png")`
 
 RStudio, when first opened, has three main sections: the **Console**, the **Environment** panel (which also has a **History** tab), and the **Plots** panel (which also has **Files**, **Packages**, **Help**, and **Viewer** tabs).
 
 Make sure that you see text in the console section that looks something like this:
-[R text screenshot]
+
+`r make_fig('r_boilerplate.png')`
 
 This means that the RStudio application is successfully communicating with the R software you installed above.
 
@@ -49,7 +50,7 @@ data(mtcars)
 Then press `Enter` or `Return` to **run** that code. "Running" means that you're telling the computer to **execute** the command you just gave it. Notice that a new value named `mtcars` should appear in your environment panel. 
 
 Now let's try taking a look at that dataset:
-```{r, results='hide'}
+```{r, eval=F}
 View(mtcars)
 ```
 When you press `Enter` on this, a new section should appear on your screen showing the `mtcars` dataset in full. 
@@ -87,7 +88,7 @@ A script is like a Word document, but for code. You can open it, edit it, save i
 
 Type `Ctrl/Cmd-Shift-N` to open a new script in RStudio (Or, you could click `File -> New File -> R Script` in the menu). A big new section should open in your RStudio session, so your application now looks like this:
 
-[insert 4-pane image].
+`r make_fig('rstudio_with_editor.png')`
 
 This is your **Editor**, or **Source**. Let's write some sample code in here just so you can get used to interacting with this interface. We'll go through what this code actually means in the next page.
 

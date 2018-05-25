@@ -1,7 +1,5 @@
----
-title: "Troubleshooting"
-output: html_document
----
+
+# Troubleshooting
 
 Imagine yourself in a week. You've been plugging away at the problem set for a few hours, but your code just **is. not. working.** Everything you run leaves an error message or produces the wrong result and you have no idea what's wrong. You're so frustrated you want to throw your computer across the room. What can you do? 
 

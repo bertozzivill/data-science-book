@@ -1,9 +1,6 @@
----
-title: "Objects, Data Types, ID Arrays"
-output: html_document
----
+# Objects, Data Types, 1D Arrays
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -185,7 +182,6 @@ I've thrown the word "object" around a few times without really describing what 
 
 Take a break! 
 
-[insert gif]
 
 ## 1-Dimensional Arrays
 
