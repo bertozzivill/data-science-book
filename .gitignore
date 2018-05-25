@@ -4,3 +4,5 @@
 .Ruserdata
 .DS_Store*
 *_book/*
+*/final/_book/*
+*/final/_bookdown_files/*

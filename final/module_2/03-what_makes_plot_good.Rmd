@@ -1,4 +1,4 @@
-# (PART) Part Two {-} 
+# (PART) Data Visualization: Theory {-} 
 
 # What Makes a Plot "Good"?
 

@@ -1,4 +1,4 @@
-# (PART) Part Three {-} 
+# (PART) Intro to R {-} 
 
 # What is Programming?
  
