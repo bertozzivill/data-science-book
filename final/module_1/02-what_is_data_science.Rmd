@@ -4,6 +4,9 @@
 ```{r setup, include=FALSE}
 library(knitr)
 figure_dir <- "module_1/figures"
+make_fig <- function(fname, dir=figure_dir){
+  knitr::include_graphics(file.path(dir, fname))
+}
 ```
 
 ## What Is Data?
@@ -11,9 +14,8 @@ Before I give you my own definition of 'data', take a minute to think up your ow
 
 ---------
 **TODO: check copyright on googled images**
-```{r, echo=F}
-knitr::include_graphics(file.path(figure_dir, "data.jpg"))
-```
+
+`r make_fig("data.jpg")`
 
 Figure 1: Top Google Image result for "data"
 
@@ -36,7 +38,7 @@ Practically speaking 'data science' is a blanket term that was coined when resea
 
 Data science can be defined as the **systematic analysis** and **visualization** of data, using a variety of quantitative tools. Fundamentally, data science is about **finding patterns** in the data we collect, and interpreting what those patterns mean.
 
-`r knitr::include_graphics("module_1/figures/data-science.png")`
+`r make_fig("data-science.png")`
 Figure 2: Almost-top Google Image result for 'data science'
 
 
@@ -47,20 +49,19 @@ In this day and age, this question seems almost trite-- we need data for EVERYTH
 
 Here's what I know about you so far. A little less than half of you are actually residential students, even though you're taking this course online:
 
-`r knitr::include_graphics("module_1/figures/status.png")`
+`r make_fig("status.png")`
 
 And if you're an MSIM student, you're far more likely to be one of those residential folks:
 
-`r knitr::include_graphics("module_1/figures/status_by_program.png")`
+`r make_fig("status_by_program.png")`
 
 A little more than half of you have some kind of programming background, and almost none of you have stats backgrounds above the undergraduate level (which is great! You're the people this class is designed for):
 
-`r knitr::include_graphics("module_1/figures/programming_stats_stacked.png")`
+`r make_fig("programming_stats_stacked.png")`
 
 Finally, almost all of you are American:
 
-`r knitr::include_graphics("module_1/figures/nationality.png")`
-
+`r make_fig("nationality.png")`
  
 
 This is incredibly valuable information for me. Knowing your level of comfort with statistics and programming will allow me to generate course content at the appropriate skill level. Understanding where you're from will help inform what examples I use in class. Realizing that many of you may not have taken an online course before lets me know that I should be very explicit about how I want certain things to be done in an online format. The list goes on and on (this is only a subset of the plots I made from your data).
@@ -73,7 +74,7 @@ This is the power of data science-- by critically collecting and analyzing infor
 **TODO: replace dataset screenshots with inline R**
 A dataset is just a special type of spreadsheet: It has rows representing some observation, and columns that list the recorded **attributes** of that observation. A typical dataset might look like this (this is just the first and last five rows):
 
-`r knitr::include_graphics("module_1/figures/salaries_dataset.png")`
+`r make_fig("salaries_dataset.png")`
 
  Even though we know nothing about where or how this dataset was collected, we can already make a lot of good guesses about it. Here it looks like every observation represents a single person-- a professor or instructor at a university-- and the columns show elements about that person's profession that researchers might find interesting-- his/her rank, field of study, years since Ph.D, "years of service", sex, and salary. It also leaves us with some unanswered questions that will be relevant to our understanding of the dataset: what year was this data collected? From which university? What is "discipline B"? Does "years of service" mean the number of years the professor has worked at this university specifically, or the number of years he/she has been in the field overall?
 
@@ -82,7 +83,7 @@ These questions can typically all be answered by the **documentation** that acco
 
 Let's try a different example. What does a single row of this dataset represent?
 
-`r knitr::include_graphics("module_1/figures/un_dataset.png")`
+`r make_fig("un_dataset.png")`
 
 This is an easy one-- each row is a country, and the columns show the name, GDP (gross domestic product, an economic measurement), and infant mortality rate in that country. But there's another interesting component to this dataset, do you see it?
 
@@ -92,11 +93,11 @@ Yup, those weird "NA" values you see in American Samoa, Andorra, and Western Sah
 
 One other example! What is a row in this dataset?
 
-`r knitr::include_graphics("module_1/figures/suicide_dataset.png")`
+`r make_fig("suicide_dataset.png")`
 
 At first you might think that each row here still represents a single person, but that's not the case. Take a look at the first 18 rows:
 
-`r knitr::include_graphics("module_1/figures/suicide_subset.png")`
+`r make_fig("suicide_subset.png")`
 
  Notice how the first 9 rows look very similar to the second 9, with the only difference being the age group and associated "Freq" count? In this dataset, **a single row represents a subset of the population**. The first row, for example, represents all 10-14 year old males who committed suicide using poison. The "Freq" column tells us how many such young men there were: 4. Similarly, row 10 tells us that there were 348 such suicides for the same method, but for 15-19 year old males. 
 
@@ -117,7 +118,7 @@ Time is ALWAYS relevant to whatever dataset you're looking at, but its importanc
 
 In **longitudinal** data, time is explicitly part of the dataset. Longitudinal data, also called **panel data**, takes multiple observations of the same thing(s) over time. Here's an example: a dataset that tracks traffic fatalities and drunk driving laws by state and year in the US. Notice the first two columns in particular.
 
-`r knitr::include_graphics("module_1/figures/traffic_dataset.png")`
+`r make_fig("traffic_dataset.png")`
 
 Here each row of the dataset is a **state-year**. Longitudinal data is a powerful tool in understanding what drives change: do traffic fatalities drop when a new drunk driving law is implemented? Are similar laws equally effective in different states?
 

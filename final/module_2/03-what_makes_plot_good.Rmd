@@ -6,15 +6,19 @@
 
 ```{r, include=FALSE}
 library(knitr)
+figure_dir <- "module_2/figures"
+make_fig <- function(fname, dir=figure_dir){
+  knitr::include_graphics(file.path(dir, fname))
+}
 ```
 
 Data visualization is a way of taking those datasets we spent so much time talking about in Module 1:
 
-`r knitr::include_graphics("module_2/figures/infx_dataset.png")`
+`r make_fig("infx_dataset.png")`
 
 And making visual representations of them:
 
-`r knitr::include_graphics("module_2/figures/program_stats.png")`
+`r make_fig("program_stats.png")`
 
 Data visualization is more than just a tool in the data scientist's back pocket: it's an essential component of understanding your data. We as humans cannot easily find patterns or trends by looking at rows and rows of numbers, but we are incredibly good at finding patterns in plots. Our brains are also easily fooled, however. This makes visualization an incredibly powerful tool that you should use with care and caution. 
 
@@ -32,7 +36,7 @@ y-axis/height of the bars		count variable (computed automatically)
 subplots/faceting		"programmer" variable
 You don't even need to have the dataset around to understand visualization encoding, you should be able to do it with just the plot. Let's try this example (make your own guesses about what the encodings are before looking at the table):
 
-`r knitr::include_graphics("module_2/figures/salaries.png")`
+`r make_fig("salaries.png")`
 
 Similarly to looking at a dataset itself, start by thinking about what each point represents. Here, it's a professor at a university.
 
@@ -56,7 +60,7 @@ Not all visualizations are made equal-- our brains are much better at accurately
 
 Here's the main takeaway of Cleveland's work: 
 
-`r knitr::include_graphics("module_2/figures/cleveland_plot.png")`
+`r make_fig("cleveland_plot.png")`
 
 This figure shows, in increasing order from left to right and top to bottom, the ease with which our brains understand how data is encoded. We are better at accurately gauging the difference in position between two points than we are in gauging the difference in the size of two circles, or between two different shades of a color. This plot gives us some good guidelines for how to encode data in our own visualizations: try to encode important or subtle values in position and length, and put less valuable or super-obvious trends into hard-to-interpret encodings like shade or color. If at all possible, the general wisdom is to stay away from 3D representations entirely; our brain is really bad at understanding how volume is encoded, and it's usually not worth the effort. 
 
@@ -82,20 +86,19 @@ Easy, right?
 
 Obviously, most visualizations pick and choose from this list of requirements; no plot is perfect. Let's take a look at some particularly nice ones, though.
 
-`r knitr::include_graphics("module_2/figures/mindard_plot.png")`
+`r make_fig("mindard_plot.png")`
 
 Tufte thinks this is the best data visualization ever made. Designed by Charles Minard in 1869, it describes Napoleon's march on Russia. This is a mix between a map and a classical plot; the physical spaces are connected by a band that shows the direction of Napoleon's army. The width of the band indicates the size of the army, and color encodes direction-- the brown bands are when he's marching toward Russia, the black bands are when he's marching back. Additionally, the chart at the bottom indicates temperature (many of Napoleon's men died of exposure). 
 
 While this plot has many excellent qualities, it also has issues: A large block of text draws the eye unnecessarily from the rest of the page; it takes time and a long explanation to understand what the plot is showing; the changes in direction of the bands make it difficult to compare different widths. 
 
-`r knitr::include_graphics("module_2/figures/gbd_compare.png")`
-
+`r make_fig("gbd_compare.png")`
 
 Here's a visualization from my former workplace, the Institute for Health Metrics and Evaluation. It's showing the "burden" of each disease on the health of the world at large-- the larger the area of the box, the more that cause contributes to both death and illness around the globe. The three colors indicate the three primary types of ill health: blue is noncommunicable diseases, red is communicable, maternal, and neonatal disorders, and green is injuries. Shade indicates change over time: causes that are darker have gotten worse since 1980, while lighter ones have gotten better.
 
 This plot, too, has some faults: it's difficult to tell what color corresponds to a "no change" value, some causes are so small you can't read them, it's difficult to compare two faraway boxes. 
 
-`r knitr::include_graphics("module_2/figures/windmap_may21.png")`
+`r make_fig("windmap_may21.png")`
 
 This map is one of my favorite visualizations, though it's much more engaging in the live visualization. It uses data from weather stations around the US to show the strength (line thickness) and direction (line movement, though you can't see that in the static version) of the wind at any given moment. 
 
@@ -111,18 +114,17 @@ I would argue that all three of these are "good" visualizations, when you have i
 ## What Makes a Bad Visualization?
 Bad visualizations happen, basically, when you ignore the rules for how to make a good visualization. Relying heavily on perceptually difficult encodings like angle or volume, including useless images in your plot, misrepresenting your data-- all of these can make visually unappealing or misleading visualizations. Let's look at a few of my favorites. 
 
-`r knitr::include_graphics("module_2/figures/misleading_axis.png")`
+`r make_fig("misleading_axis.png")`
 
 A favorite tool of media outlets (both liberal and conservative, for the record) is the truncated axis trick: one of these bars looks much taller than the other, but the y-axis starts at ~100 million, not at zero! If the axis started at zero, there would be only a fractional difference between the bars. (As a side note, this data is also misrepresented: having a full time job doesn't preclude you from being on welfare, and vice versa). Here's a great summary plot to describe the issue:
  
 **insert plot from twitter**
  
- 
-`r knitr::include_graphics("module_2/figures/ethnicity_plot.png")`
+ `r make_fig("ethnicity_plot.png")`
 
 This visualization took a type of plot called a stacked area chart, which is a perfectly reasonable way of comparing different proportions to each other, and cut the shape of the US out of it. This is problematic, since a stacked area chart encodes data in the relative height of each segment. You get rid of some of the plot on the top or bottom, and everything becomes meaningless. 
 
-`r knitr::include_graphics("module_2/figures/banana_export.png")`
+`r make_fig("banana_export.png")`
 
 This is, I believe, the worst visualization I have ever seen. I'll grant you, the labeling is decent and the color scheme of the bars are acceptable, but the banana background makes everything illegible, the 3D elements (both in the bars themselves and in the plot as a whole) makes it impossible to gauge trends, and it's ugly as all get-out.
 

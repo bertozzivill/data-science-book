@@ -33,9 +33,9 @@ normal_dist <- ggplot(test, aes(x=height)) +
   geom_vline(xintercept = 72, color="red", size=1) + 
   labs(y="Probability Density", x="Height (inches)")
 print(normal_dist)
-png("/Users/bertozzivill/Desktop/normal_distribution.png")
-print(normal_dist)
-graphics.off()
+# png("/Users/bertozzivill/Desktop/normal_distribution.png")
+# print(normal_dist)
+# graphics.off()
 ```
 
 Just like with uniform distributions, the *area under this curve* must equal 1. So if you wanted to know the probability that someone was over 6 feet, you'd use software like R to calculate the area under the curve between the red line (at 72 inches) and the edge of the plot. I used the function `pnorm` to discover that the area under the curve from 72 onwards is 0.115. So, according to this distribution, there's an 11.5% chance that a random adult you pick off the street will be over 6 feet tall.
@@ -66,9 +66,9 @@ increase_n <- ggplot(example, aes(x=height))+
                    y="Frequency")
 print(increase_n)
 
-png("/Users/bertozzivill/Desktop/increase_n.png")
-print(increase_n)
-graphics.off()
+# png("/Users/bertozzivill/Desktop/increase_n.png")
+# print(increase_n)
+# graphics.off()
 ```
 
 It also turns out that normal distributions have a lot of nice properties that make statistics easy. Many statistical methods rely on the assumption that you're pulling data from a *normally distributed* variable.
