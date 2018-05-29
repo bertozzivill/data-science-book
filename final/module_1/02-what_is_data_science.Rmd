@@ -26,20 +26,20 @@ Done? Ok, here's what I have. My definition of data is a **collection** of **com
 Let's break that down: 
 
 * **collection**: data, by definition, refers to something plural. Even the word "data" is the plural of "datum", which is Latin for "fact" or "piece of information". The key point here is that a single data point does us very little good as data scientists. We need multiple observations to draw conclusions. And the more data points we have (the bigger our "sample size", to use the statistical term), the more confident we can be in our results. 
-* **comparable**: A fundamental assumption we make in data science is that each data point in a dataset is describing the same type of thing. If your data points are of mixed types (e.g. some data points represent people and some represent countries) or if they don't have comparable metrics (e.g. some people have their "income" listed monthly and some annually), that dataset is not ready to be analyzed. Unfortunately, in the real world, datasets are initially not comparable, and the analyst must put in work to clean the data to prepare it for analysis.
-* **internally consistent**: All of the information within a single observation should tell a cohesive story. If your dataset contains columns for both 'age' and 'date of birth', both of those metrics should agree on how old the individual is. It's also common to have internal consistency issues in real-world datasets, which requires additional cleaning.
-* **observations**: Information exists in the world, but it doesn't become useful to us-- doesn't become data-- until we write it down. Each plant in my apartment has a height that I can measure, but until I actually take those measurements and record them, for the purposes of data science those numbers aren't data. Concerns about the proper methods of data collection form a large component of data science.
+* **comparable**: A fundamental assumption we make in data science is that each data point in a dataset is describing the same type of thing. If your data points are of mixed types (e.g. some data points represent people and some represent countries) or if they don't have comparable metrics (e.g. some people have their "income" listed monthly and some annually), that dataset is not ready to be analyzed. Unfortunately, in the real world, datasets are initially not comparable, and the analyst must put in work to "clean" the data to prepare it for analysis.
+* **internally consistent**: All of the information within a single observation should tell a cohesive story. If your dataset contains columns for both "age" and "date of birth", both of those metrics should agree on how old the individual is. It's also common to have internal consistency issues in real-world datasets, which requires additional cleaning.
+* **observations**: Information exists in the world, but it doesn't become useful to us-- doesn't become data-- until we write it down. Each plant in my apartment has a height that I can measure, but until I actually take those measurements and record them, for the purposes of data science those numbers aren't "data". Concerns about the proper methods of data collection form a large component of data science.
 * **systematically collected**: This one feeds back into our comparability and internal consistency requirements. If data are collected by many different groups using different methods, it's highly likely that the resulting data won't actually be comparable. For example, one study looked at the weight of infants in a number of South American countries. However, the data collectors in some countries weighed the babies on the day they were born, and in other countries weighed them two days later. Since infants can lose up to a third of their body weight in their first week of life, data collected using these two different methods was not actually comparable. The data collection process was insufficiently systematic. 
 * **subject to analysis**: If all of the above conditions are met, and if a dataset contains relevant, useful information, then we can get around to the fun parts: figuring out what story your data tells. This is the purview of data science. 
  
 
 ## What Is Data Science?
-Practically speaking 'data science' is a blanket term that was coined when researchers from a lot of different quantitative fields (statistics, computer science, applied mathematics, computational biology, business, etc) realized that they were all working on similar problems-- as the everyday practices of these industries became more and more data-rich, everybody started needing to share tools to effectively process and understand that data. And so the term 'data science' was born. 
+Practically speaking 'data science' is a blanket term that was coined when researchers from a lot of different quantitative fields (statistics, computer science, applied mathematics, computational biology, business, etc) realized that they were all working on similar problems-- as the everyday practices of these industries became more and more data-rich, everybody started needing to share tools to effectively process and understand that data. And so the term "data science" was born. 
 
 Data science can be defined as the **systematic analysis** and **visualization** of data, using a variety of quantitative tools. Fundamentally, data science is about **finding patterns** in the data we collect, and interpreting what those patterns mean.
 
 `r make_fig("data-science.png")`
-Figure 2: Almost-top Google Image result for 'data science'
+Figure 2: Almost-top Google Image result for "data science"
 
 
 
@@ -71,10 +71,14 @@ This is the power of data science-- by critically collecting and analyzing infor
  
 
 ## Understanding Datasets
-**TODO: replace dataset screenshots with inline R**
 A dataset is just a special type of spreadsheet: It has rows representing some observation, and columns that list the recorded **attributes** of that observation. A typical dataset might look like this (this is just the first and last five rows):
-
-`r make_fig("salaries_dataset.png")`
+```{r, echo=F}
+library(car)
+library(data.table)
+data(Salaries)
+Salaries <- data.table(Salaries)
+print(Salaries)
+```
 
  Even though we know nothing about where or how this dataset was collected, we can already make a lot of good guesses about it. Here it looks like every observation represents a single person-- a professor or instructor at a university-- and the columns show elements about that person's profession that researchers might find interesting-- his/her rank, field of study, years since Ph.D, "years of service", sex, and salary. It also leaves us with some unanswered questions that will be relevant to our understanding of the dataset: what year was this data collected? From which university? What is "discipline B"? Does "years of service" mean the number of years the professor has worked at this university specifically, or the number of years he/she has been in the field overall?
 
@@ -85,13 +89,12 @@ Let's try a different example. What does a single row of this dataset represent?
 
 `r make_fig("un_dataset.png")`
 
-This is an easy one-- each row is a country, and the columns show the name, GDP (gross domestic product, an economic measurement), and infant mortality rate in that country. But there's another interesting component to this dataset, do you see it?
+Here, each row is a country, and the columns show the name, GDP (gross domestic product, an economic measurement), and infant mortality rate in that country. But there's another interesting component to this dataset, do you see it?
 
-Yup, those weird "NA" values you see in American Samoa, Andorra, and Western Sahara. Those indicate **missing data**-- places where whoever collected the data could not find a reliable value to put in that space. So, they effectively leave it blank. Understanding how to deal with missing data is a vital part of a data scientist's day-to-day life, but is beyond the scope of this class. If you encounter missing values in a dataset you're working with, for the purposes of this course you can simply ignore those observations.
+Yup, those weird "NA" values in American Samoa, Andorra, and Western Sahara. Those indicate **missing data**-- places where whoever collected the data could not find a reliable value to put in that space. So, they effectively leave it blank ("NA" stands for "not available"-- missing data can also be encoded by the word "Null", "nan", empty strings(""), or some specific numeric code). Understanding how to deal with missing data is a vital part of a data scientist's day-to-day life, but is beyond the scope of this book as it stands.
 
- 
 
-One other example! What is a row in this dataset?
+One other example--what is a row in this dataset?
 
 `r make_fig("suicide_dataset.png")`
 
