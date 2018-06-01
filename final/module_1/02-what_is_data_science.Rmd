@@ -134,13 +134,13 @@ One of the most common methods for data collection is a **survey**: within your 
 
 As you might imagine, it's very easy to mess up the survey process. The specific people you survey, the type of question you ask, the way you ask the question... all of these, and more, can seriously **bias** survey results away from the true thing you're trying to find.
 
-A close relative of a survey is a **census**. With censuses, you're still contacting people directly and asking them questions, but there are two big differences: you contact EVERYBODY in the region (usually a country), and they're usually required by law to answer. So you have to worry a lot less about whether or not the population you survey lines up with the real population, because the two should be the same. 
+A close relative of a survey is a **census**. With censuses, you're still contacting people directly and asking them questions, but there are two big differences: you contact EVERYBODY in the region (usually a country), and they're usually required by law to answer. So you have to worry a lot less about whether or not the population you survey lines up with the real population, because the two should be the same. As you might imagine, there are potential privacy concerns involved with takin censuses, and they collect primarily demographic data. [**todo: go into a little more census detail**]
 
 Surveys and censuses are both methods of collecting cross-sectional data. Longitudinal data is most often collected through a process called **surveillance**. There are a few different kinds: passive, active, and continuous. 
 
 **Passive** surveillance is the process of recording events as they present themselves to you. For example, hospitals collect data on every patient they see, but you have to explicitly seek hospital care in order to be included in hospital records. 
 
-**Active** surveillance is when you're interested in a specific event, and you specifically go seek out that event. For example, researchers in malaria-endemic countries will often go door-to-door to test children for malaria. This is active surveillance. It's used primarily in health care settings.
+**Active** surveillance is when you're interested in a specific event, and you specifically go seek out that event. For example, researchers in malaria-endemic countries will often go door-to-door to test children for malaria. This is active surveillance. It's used primarily in health care settings. (**todo: is that true?**)
 
 **Continuous** surveillance required the internet to really take off, though it has existed for most (if not all) of written history. This is simply the constant, administrative collection of data. Google recording your location and web history, Amazon recording your purchasing patterns, your bank recording your transactions... these are all forms of continuous surveillance. The vast majority of data science for business is parsing and analyzing data collected via this method. 
 
@@ -158,5 +158,5 @@ For a richer dataset like the traffic fatalities one, there are many more questi
 **todo**: revisit this, it denigrates exploratory analyses
 A good data science question should be clear, concise, and within the scope of your dataset to answer. It shouldn't include vague terms about what variables "look like" or about "what variables impact [x]". They should clearly, explicitly state what relationship within the dataset you're interested in exploring. The simplest data science questions only ask how two columns of the dataset are related, but that doesn't have to be the case. For example, in the suicide dataset, one might ask "What methods of suicide are most used in different sexes and age groups?" This question meets all the requirements of a good question, while incorporation all four columns of the dataset. 
 
-Once you have some good starting questions in your dataset, you can start gauging the answers with **exploratory plotting**. We'll talk more about that in Module 2.
+Once you have some good starting questions in your dataset, you can start gauging the answers with **exploratory plotting**. We'll talk more about that next chapter.
 
