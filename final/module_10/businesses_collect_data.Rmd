@@ -2,6 +2,8 @@
 
 # How Do Businesses Collect Your Data?
 
+Let's change something.
+
 As information school students, and citizens of the 21st century, you're probably aware: your data is being collected, all the time, mostly by businesses. But how do businesses collect your data, and why? 
 
 Broadly speaking, the goal of every business is the same: to make a profit. Data collection and data science play a wide range of roles in pursuit of this overarching goal, a sampling of which we'll go over here. Also, don't think of it as a bad thing that businesses are profit-driven-- they also deliver high-valued services to consumers in exchange for our data and/or our dollars. 
