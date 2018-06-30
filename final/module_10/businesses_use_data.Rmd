@@ -1,5 +1,7 @@
 # How Do Businesses Use Your Data?
 
+More changes.
+
 Now that we have a basic idea of how businesses collect your data, let's look into some common ways they use it. 
 
 ## User Interface Design
