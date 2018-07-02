@@ -38,6 +38,7 @@ However, in more recent decades the Mercator Projection has been heavily critici
 
 Randall Munroe has a brief and amusing rundown of different map projections [here](https://xkcd.com/977/).
 
+**todo: add reference to how to lie with maps book**
 
 
 ## Color
@@ -78,6 +79,11 @@ And then sometimes mapmakers just misuse color. Here's one of the most egregious
 
 (As a side note, the right-hand map is also incorrect: New Jersey and Rhode Island most certainly do not have higher populations than California or New York). 
 
+**todo: possible other things to mention:
+
+--pixel-level maps and their interpretation
+--care in choice of color- there may be meaning even where not intended **
+
  
 ## Geographic Simplification
 I've described maps as explicitly projecting latitude and longitude onto their x and y axes, but what about this map?
@@ -111,8 +117,6 @@ In addition to a simplified geography, this minimalist map is also chock full of
 Iconography can also be used to generate maps for propaganda, as this 1877 map of Europe clearly shows:
 
 `r make_fig("war_map.jpg")`
-`r knitr::include_graphics("module_2/figures/war_map.jpg")`
-
 
  You don't need to know much at all about European history to understand that the maker of this map is not too fond of Russia, and that he's specifically concerned with conflicts ongoing in Persia (now Iran), Turkey, and Austro-Hungary, as well as the threat of confrontation in Germany. 
  
