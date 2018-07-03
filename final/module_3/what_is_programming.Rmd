@@ -13,9 +13,11 @@ This process of communicating with a computer via a specific, predefined syntax 
 ## Language vs. Software
 Programming languages like R are, conceptually, quite similar to human languages like English-- they're a set of rules, regulations, and terms that allow us to interact with things around us (for programming language, those "things" are computers and data; for human languages, they're mostly people). But on the next page I'll ask you to install the latest version of R onto your computer. This doesn't seem to fit in with our conception of language at all-- how can you install something amorphous and conceptual like a language?
 
-Let's think back to our analogy of a computer as a brain. Your brains understand the words you're reading right now because I'm writing them in English, a language you know. Se io invece scrivessi questa lezione in italiano, nessuno potrebbe capirlo, vero?
+Let's think back to our analogy of a computer as a brain. Your brains understand the words you're reading right now because I'm writing them in English, a language you know. Se io invece scrivessi questa lezione in italiano, voi non potreste capirlo, vero?
 
-What I wrote up there was "If I were to write this lesson in Italian instead, nobody would be able to understand it, right?" But you probably couldn't understand it, because it wasn't in a language you knew. Similarly, computers don't come out of the box "speaking" every programming language under the sun. Instead, you can selectively install software on your computer that will allow it to understand and interact with the syntax of the programming language you want to use. And that software bears the same name as the language itself. So when you "install R" on your machine, you're basically "teaching" it the R programming language. 
+What I wrote up there was "If I were to write this lesson in Italian instead, you wouldn't be able to understand it, right?" But you probably couldn't understand it, because it wasn't in a language you knew. Similarly, computers don't come out of the box "speaking" every programming language under the sun. Instead, you can selectively install software on your computer that will allow it to understand and interact with the syntax of the programming language you want to use. And that software bears the same name as the language itself. So when you "install R" on your machine, you're basically "teaching" it the R programming language. 
+
+**good spot for magic analogy-- claim that words and syntax have value, the idea of a language that is also an action**
 
 One last thing: you know how the operating system on your phone or computer has different versions and sometimes needs to be updated? Programming language software is the same way, so you should switch to the latest version of R every few months. Languages like R are constantly getting new functionality added and fixing old problems, so updating to a new version of R is like teaching your grandma the words "woke" and "hella". 
 
@@ -23,7 +25,7 @@ One last thing: you know how the operating system on your phone or computer has 
 ## Software vs. User Interfaces
 Ok, so now we understand what R is and why I'm asking you to install it. Why am I also forcing you to install this thing called RStudio?
 
-Think back to when you wrote Essay 1 for this class. Did you type it up in a generic text editor like Notepad (on Windows) or TextEdit (on Mac)? I'll bet you didn't. I'll bet you opened Microsoft Word, or Google Pages, or some other program that gave you a nice interface, let you pick whatever font and page formatting you wanted, and told you when you made grammar or spelling mistakes. 
+Think back to the last time you wrote an essay for a class. Did you type it up in a generic text editor like Notepad (on Windows) or TextEdit (on Mac)? I'll bet you didn't. I'll bet you opened Microsoft Word, or Google Pages, or some other program that gave you a nice interface, let you pick whatever font and page formatting you wanted, and told you when you made grammar or spelling mistakes. 
 
 RStudio is like the Microsoft word for R. You can write R in the default program that comes with your R installation, but RStudio is a much prettier and more helpful program to use. You can write, run, save, visualize, and debug code all within the RStudio interface. 
 
@@ -33,4 +35,6 @@ RStudio is known as an "integrated development environment", or IDE. There are p
 ## Programming sound dumb and complicated and I don't want to do it!
 Especially if you've never programmed before, these first few coding modules might be quite challenging for you. Programming is a very different (and initially nonintuitive) way of interacting with a machine. There are a lot of weird rules, your code will be super nitpicky about small syntax or grammatical mistakes, and it'll all feel unnecessarily complex. 
 
-But trust me here: don't give up! Programming lets you build literally anything-- you can use code to make games, websites, or apps, to do any kind of analysis you want, to build models of everything from mosquitoes to galaxies. In this class we'll be using code for data analysis, but that's just scratching the surface of what programming is capable of. It's worth the learning curve to gain access to this world!
+But trust me here: don't give up. Programming lets you build literally anything-- you can use code to make games, websites, or apps, to do any kind of analysis you want, to build models of everything from mosquitoes to galaxies. In this class we'll be using code for data analysis, but that's just scratching the surface of what programming is capable of. It's worth the learning curve to gain access to this world!
+
+**add personal plug and link to blog post** 
