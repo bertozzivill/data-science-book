@@ -15,8 +15,8 @@ make_fig <- function(fname, dir=figure_dir){
 1. Visit the [R download](https://cran.r-project.org/) page.
 2. Click the "Download" link for your operating system.
 3. Click the "base" link.
-4. Click the "Download R 3.3.2 for {your operating system}" link.
-5. A file called "R-3.3.2-win.exe" will download. When it is downloaded, click on it and follow the installation wizard (default settings should work just fine).
+4. Click the "Download R 3.4.3 for {your operating system}" link.
+5. A file called "R-3.4.3-win.exe" will download. When it is downloaded, click on it and follow the installation wizard (default settings should work just fine).
 
 
 ## Installing RStudio
@@ -67,7 +67,7 @@ summary(mtcars)
 If all of the above worked smoothly, you're up and running in R! If things aren't working for you, post to the coding discussion board or send me an email to troubleshoot. 
 
 ## A Note About the Text You're Reading
-
+**todo: update with deets about bookdown**
 I'm writing these coding-based lectures using a utility called "RMarkdown", which lets me intersperse plaintext (like what you're reading) with actual code and its output (like what you saw above). You can access these documents in your Canvas page, but they're also published to the RMarkdown website. 
 
 You should get comfortable looking at this type of image:
@@ -149,7 +149,7 @@ Let's comment our script:
 # Print a message to the Console
 print("This is our first script.")
 
-#Add two numbers 
+# Add two numbers 
 9+3
 
 # Test if two numbers are equal
@@ -170,7 +170,7 @@ If you want to avoid running a segment of code in your script, you can **comment
 # Print a message to the Console
 print("This is our first script.")
 
-#Add two numbers (COMMENTED OUT)
+# Add two numbers (COMMENTED OUT)
 # 9+3
 
 # Test if two numbers are equal
@@ -185,7 +185,9 @@ You can find a full list of keyboard shortcuts for RStudio at any time by hittin
 ## Save Your Work!
 Remember that time that you forgot to save that big paper you were working on and your computer crashed and you lost everything? That feeling is just as terrible when you're writing code as when you're writing longform. Saving works exactly the way you'd expect it to in RStudio-- just hit `Ctrl/Cmd-S` and a window will pop up prompting you to enter the name and location of your script. Notice that R scripts have the suffix ".R" or ".r", the same way word documents have the suffix ".docx".
 
-Ok, by now you should know your way around RStudio pretty well. Let's move on to coding!
+**todo: add some notes about git/github**
+
+These are just the basics of RStudio. Every programmer develops a slightly different workflow with this system, and it won't take you long to develop yours. Soon these command will become second nature to you, and you can focus on the meatier problem-- coding itself. 
 
 <br>
 
