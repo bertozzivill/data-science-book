@@ -4,6 +4,8 @@
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+**todo: think carefully about how to arrange the information on this page. should functions go earlier? How do you keep the flow going from the brownie example?**
+
 This is our first real coding lecture. In this and all future such lectures, I highly highly recommend that you work through examples with me as we go along.
 
 ## Basic Data Types
@@ -67,7 +69,7 @@ Get to know these data types well-- programming is all about manipulating them i
 ## Objects and Variables
 So far, you're probably less-than-impressed that R knows how to add two numbers together. Fair. Programming languages like R really start to get powerful when you realize that you can **store** values in named objects called **variables**. 
 
-Let's say you're at home, and you want to bake some brownies while you work on your Intro to Data Science homework. Unfortunately, your brownie pan is small, so you want to make a batch 2/3 the size it says in the recipe. You could type in the amount of flour you'd need to measure:
+Let's say you're at home, and you want to bake some brownies. Unfortunately, your brownie pan is small, so you want to make a batch 2/3 the size it says in the recipe. You could, in R, type in the amount of flour you'd need to measure:
 
 ```{r}
 # the recipe calls for 2 cups of flour, so the number of cups I need is:
@@ -127,7 +129,7 @@ Now you've expanded your script to *two* variables, and you can change either of
 This may seem like a silly example--it would still be a bit tedious to change the value of the `recipe_amount` variable over and over again, and it would probably be easier just to use an actual calculator, but there are two things I want you to take away from this:
 
 1. It's possible to *store* values in memory as named variables and manipulate them later;
-2. It would be super convenient if you could convert *all* the ingredient amounts in one go, like if you could sort of "loop" through the list of ingredients and multiply each one by your `recipe_multiplier` variable. Hmmm (*foreshadowing*)...
+2. It would be super convenient if you could convert *all* the ingredient amounts in one go, like if you could sort of "loop" through the list of ingredients and multiply each one by your `recipe_multiplier` variable. Hmmm...
 
 
 <br>
@@ -178,9 +180,7 @@ numeric_vector <- c(1, 3, 8)
 
 This conveys the same information more concisely and replicably. See the coding best practices page for more details. 
 
-I've thrown the word "object" around a few times without really describing what it is. An **object** is anything that you can manipulate in a programming language. They're usually named, and you can see them in your `Environment` panel. Variables are objects, but so are lots of other things (like arrays, which we'll learn about in the next section). 
-
-Take a break! 
+I've thrown the word "object" around a few times without really describing what it is. An **object** is anything that you can manipulate in a programming language. They're usually named, and you can see them in your `Environment` panel. Variables are objects, but so are lots of other things (like arrays, which we'll learn about next). 
 
 
 ## 1-Dimensional Arrays
@@ -241,6 +241,7 @@ seq(1, 10, 2)
 seq(10, 100, 10) 
 ```
 <br> 
+**todo: define functions before this**
 If you want to repeat the same set of values many times, use the `rep()` function. It needs two things: the vector of values you want to repeat, and how many times you want to repeat them:
 ```{r}
 # repeat the sequence 1:5 three times
