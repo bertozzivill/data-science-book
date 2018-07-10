@@ -6,6 +6,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Logic 
+**todo: go into more detail about script construction earlier on**
 
 In the last page, one of our three main data types probably stuck out to you as unusual: the booleans. It's easy to imagine occasions when you would want to generate lists of numbers or strings, but what use is it to have these True and False values running around?
 
@@ -38,8 +39,8 @@ if (recipe_multiplier>1){
 ```
 Let's break down what just happened there. We invoked our special word, `if`, and put a **logical statement** in parentheses `()` right after it. After the logical statement, we have a set of curly brackets `{}` with some lines of code inside of them. Here's how the computer interprets this when we ran the code with `recipe_multiplier` equal to 2.5: 
 
-1. Aha! an `if`! There should be a logical statement coming up for me to evaluate!   
-2. The logical statement evaluates to `TRUE`! I should **run** all the code inside those curly brackets!
+1. Aha, an `if`! There should be a logical statement coming up for me to evaluate.   
+2. The logical statement evaluates to `TRUE`--I should **run** all the code inside those curly brackets!
 
 Now let's see what happens when `recipe_multiplier` is not greater than 1:
 ```{r}
@@ -52,13 +53,13 @@ if (recipe_multiplier>1){
 
 Here's the logical flow:
 
-1. Aha! an `if`! There should be a logical statement coming up for me to evaluate!   
-2. The logical statement evaluates to `FALSE`! I should **ignore** all the code inside those curly brackets and move on with the script!
+1. Aha, an `if`! There should be a logical statement coming up for me to evaluate.   
+2. The logical statement evaluates to `FALSE`-- I should **ignore** all the code inside those curly brackets and move on with the script!
 
 Hence, we don't see any printed output in the second example. 
 
 ### Else
-Now we've written ourselves a nice message when we're making a big batch of brownies, but what if we want to write a *different* message when we're making a smaller batch? This is where an `else` statement comes in. First we'll run `if` just like before, and if the logical statement evaluates to `FALSE`, we'll move on to evaluate a *different* logical statement. You can never have an `else` without an `if` before it.
+Now we've written ourselves a nice message when we're making a big batch of brownies, but what if we want to write a *different* message when we're making a smaller batch? This is where an `else` statement comes in. First we'll run `if` just like before, and if the logical statement evaluates to `FALSE`, we'll move on to evaluate a *different* logical statement. **Note: You can never have an `else` without an `if` before it.**
 ```{r, results='hide'}
 if (recipe_multiplier>1){
   print("Wow, that's a big batch of brownies! Delicious!")
@@ -80,8 +81,8 @@ if (recipe_multiplier>1){
 
 Our logical flow is:
 
-1. Aha! an `if`! There should be a logical statement coming up for me to evaluate!   
-2. The logical statement evaluates to `TRUE`! I should run all the code inside the `if` statement's curly brackets and ignore the `else` code completely!
+1. Aha! an `if`! There should be a logical statement coming up for me to evaluate.   
+2. The logical statement evaluates to `TRUE`--I should run all the code inside the `if` statement's curly brackets and ignore the `else` code completely.
 
 And if `recipe_multiplier` is not greater than 1:
 
@@ -96,8 +97,10 @@ if (recipe_multiplier>1){
 
 Our logical flow is:
 
-1. Aha! an `if`! There should be a logical statement coming up for me to evaluate!   
-2. The logical statement evaluates to `FALSE`! I should ignore all the code inside the `if` statement's curly brackets and run all the code inside the `else` statement's curly brackets!
+1. Aha, an `if`! There should be a logical statement coming up for me to evaluate.  
+2. The logical statement evaluates to `FALSE`--I should ignore all the code inside the `if` statement's curly brackets and run all the code inside the `else` statement's curly brackets instead.
+
+**todo: talk about syntax and bracket placement**
 
 ### Else if 
 `else if` is less common than `else` and `if`, but it's still useful. You use it when there are multiple `if` statements you want to evaluate before you move to your default option, `else`. 
@@ -119,10 +122,10 @@ We get a "small batch" message even though we're not making a small or a large b
 recipe_multiplier <- 1
 if (recipe_multiplier>1){
   print("Wow, that's a big batch of brownies! Delicious!")
-}else if(recipe_multiplier==1){
-  print("You're making the suggested brownie batch size! Don't use this calculator, just look at the recipe in the book!")
-}else{
+}else if(recipe_multiplier<1){
   print("Oh nice, a small brownie batch today. Enjoy them!")
+}else{
+  print("You're making the suggested brownie batch size! Don't use this calculator, just look at the recipe in the book!")
 }
 ```
 
@@ -156,7 +159,7 @@ for (this_variable in iterating_vector){
 <br> 
 Notice that the structure of this looks kind of like an `if` statement: there's a special word (here it's `for` instead of `if`), followed by a statement in parentheses `()`, followed by some code in curly brackets `{}`. The flow of code is fairly similar too-- instead of the statement in parentheses determining *whether or not* the code in curly brackets gets run, it determines *how many times* and *with what values* that code gets run. The computer interpreting the code goes something like:  
 
-1. Aha! A `for`! There's a loop coming up.
+1. Aha, a `for`! There's a loop coming up.
 2. I should save the *first* element of `iterating_vector` as a variable named `this_variable` and run the code in curly brackets.
 3. I should save the *second* element of `iterating_vector` as a variable named `this_variable` and run the code in curly brackets.
 
