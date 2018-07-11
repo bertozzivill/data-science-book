@@ -1,9 +1,9 @@
 
 # Troubleshooting
 
-Imagine yourself in a week. You've been plugging away at the problem set for a few hours, but your code just **is. not. working.** Everything you run leaves an error message or produces the wrong result and you have no idea what's wrong. You're so frustrated you want to throw your computer across the room. What can you do? 
+Imagine yourself in a week. You've been plugging away at the exercises in this book for a few hours, but your code just **is. not. working.** Everything you run leaves an error message or produces the wrong result and you have no idea what's wrong. You're so frustrated you want to throw your computer across the room. What can you do? 
 
-The first three steps outlined below are things you can do on your own, without input from other people. Step 4 is where you start asking for help externally, and follows the format suggested in Module 1.
+The first three steps outlined below are things you can do on your own, without input from other people. Step 4 is where you start asking for help externally.
 
 ## Step 1: Learn to Love the Error Message 
 
@@ -26,12 +26,12 @@ Here's another example of a helpful error message:
 new_vector <- c("dog" "cat", "mouse")
 ```
 <br> 
-The `c()` function is expecting a series of elements separated by commas that it can group together into a vector. It was expecting a `,` after the word `"dog"`, but instead it got `"cat"`. This string was *unexpected*, hence the error message. Fix it by just adding a comma!
+The `c()` function is expecting a series of elements separated by commas that it can group together into a vector. It was expecting a `,` after the word `"dog"`, but instead it got `"cat"`. This string was *unexpected*, hence the error message. Fix it by just adding a comma.
 
 
 ## Step 2: Chekc for Typos
 
-Typos are by *far* the most common coding mistake. Probably 75% of the problems students brought to me last quarter involved some sort of small typo. Before you spend a lot of time online getting into the weeds of whatever function you're using, make sure you didn't just switch two letters around or forget a parenthesis. 
+Typos are by *far* the most common coding mistake. At least 75% of the problems students bring to me involved some sort of small typo. Before you spend a lot of time getting into the weeds of whatever function you're using, make sure you didn't just switch two letters around or forget a parenthesis. 
 
 Speaking of forgetting parentheses, try typing this into your console and hitting Enter: `c("dog", "cat"`. Notice that instead of printing out the vector you've just specified, or giving you a `>` indicator like usual, you now have a `+` sign at the far left of your cursor. That means that you've opened some sort of bookended operator (like `""`, `"()"`, or `"{}"`), but haven't closed it. The `+` indicates that the console is still waiting to get the end of its instruction. You can make it go away by actually closing the loop (in this case, by typing the missing `)`), or by pressing `Esc` to get back to the `>` cursor. 
 
@@ -65,18 +65,8 @@ If `?{function name}` isn't helping you out, google the function (again, includi
 
 Are you trying to write a `for` loop, and just can't make heads or tail of it? Is my lecture not helping you gain clarity? The internet is full of additional tutorials that may be able to give you additional insights. 
 
-## Step 5: Ask Your Peers
 
-A lot of people taking this class already have some programming experience (and those who don't will quickly learn it). Posting to the discussion board is a wonderful way to get help from your classmates (and from Shrawan and me) in a way that also leaves a record of that problem in case someone else has that same issue later. 
+## Step 5: Ask the Internet: Writing your Own Stack Overflow Question
 
-There are very specific guidelines for writing a great help request. You can find them [here](http://stackoverflow.com/help/how-to-ask). **Please follow them when posting!**
-
-## Step 6: Email Me and/or Shrawan
-
-I'm here if you need me, though I'd really prefer you post to the board so everyone can learn together. If you're emailing me with coding problems, please still **[follow the guidelines](http://stackoverflow.com/help/how-to-ask) for asking a good question**! 
-
-## Step 7: Ask the Internet: Writing your Own Stack Overflow Question
-
-I suspect that nothing we do in this class will require you to ask a question that doesn't already have an answer online, but you never know! Posting to the discussion board  and sending me emails should leave you well-prepared to ask your own questions online. 
-
+I suspect that nothing we do in this book will require you to ask a question that doesn't already have an answer online, but you never know! There are very specific guidelines for writing a great help request. You can find them [here](http://stackoverflow.com/help/how-to-ask). **Please follow them when posting.**
 

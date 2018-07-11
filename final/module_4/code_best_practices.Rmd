@@ -2,11 +2,11 @@
 
 # Writing Good Code
 
-There are hundreds of papers, blog posts, and even books written about how to write code in the clearest, least buggy way possible. A personal favorite of mine is this module's nonrequired reading, [Best Practices for Scientific Computing](http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1001745&type=printable). You're not required to read through the whole thing, but I'll reiterate some of the authors' points (and add my own input) below. 
+There are hundreds of papers, blog posts, and even books written about how to write code in the clearest, least buggy way possible. A personal favorite of mine is this module's nonrequired reading, [Best Practices for Scientific Computing](http://journals.plos.org/plosbiology/article/file?id=10.1371/journal.pbio.1001745&type=printable). You're not required to read through the whole thing, but I'll reiterate some of the authors' points (and add my own input) below. Its follow up, Good Enough Practices in Scientific Computing, is also well worth a read. 
 
 ## Golden Rule: Write Code for People, not Computers
 
-Yes, computers are the ones who will *execute* your code, but humans are the ones who will be looking at it. And if you write messy, terrible code, it will be extremely difficult for humans to understand what on earth is going on. Even if no one else will look at a script you wrote, *your future self* will have to deal with that script. And your future self will be *pissed* if it's impossible to read. 
+Yes, computers are the ones who will *execute* your code, but humans are the ones who will be looking at it. And if you write messy, terrible code, it will be extremely difficult for humans to understand what on Earth is going on. Even if no one else will look at a script you wrote, *your future self* will have to deal with that script. And your future self will be *pissed* if it's impossible to read. 
 
 ## Name with Wisdom
 
@@ -36,7 +36,7 @@ print(scaling_factor_vector)
 ```
 <br>
 
-Distinguishing very different variables by tiny differences in their names leaves you ripe for damaging typos or misrepresentations. (Notice the repeated value in `scaling_factor_vector`) Make your names significantly different from each other!
+Distinguishing different variables by tiny differences in their names leaves you ripe for damaging typos or misrepresentations. (Notice the repeated value in `scaling_factor_vector`) Make your names significantly different from each other!
 
 ### Meaning
 ```{r, error=T}
@@ -50,7 +50,7 @@ scaling_factor_vector <- c(scaling_factor_1, scaling_factor_2, scaling_factor_3)
 <br>
 Even though you spelled out what country each factor represented in the comments, because the variable names don't have any meaning to them it's incredibly difficult to remember which is which. You have to keep referring up to the original lines, which is tedious and unnecessary when you could just give your variables meaningful names. 
 
-### Conciseness
+### Conciseness (Brevity?)
 ```{r, error=T}
 # Generate scaling factors for our countries of interest
 mortality_rate_scaling_factor_for_ecuador <- 19
@@ -113,6 +113,7 @@ toy_data[, scaled_mortality:=mortality/scaling_factor] # divide mortality by the
 ```
 
 ## Don't Repeat Yourself
+**todo: better example**
 You've written some code that accomplishes what you want it to for data from 2010. Now you want to do that exact same thing, but to data from 2011. It would be fairly easy to just copy-paste all your code for 2010, change the names to "2011", and be on your way. 
 
 **DON'T DO THIS**. 
