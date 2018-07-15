@@ -16,6 +16,8 @@ Well, we said that we want the area under the distribution (which in this case i
 
 Why am I telling you all this? What's the point of drawing this rectangle? Why does it matter that it has an area of 1?
 
+**todo: add a note about why you can't ask the probability of picking exactly 4**
+
 Imagine we wanted to know the probability that, when pick a random value between 3 and 5, that value is less than 4. We could calculate the area of our uniform distribution between 3 and 4: that is, a rectangle of length 1 (becasuse $4-3=1$) and height $1/2$ (because we already said that's the height of our distribution). $1*1/2=0.5$, so there's a 50% chance that our random draw is less than 4. Similarly, if we wanted to know the probability that our random draw is between 3.1 and 3.4, we could calculate the length of that rectangle ($3.4-3.1=0.2$) and multiply it by  its height ($1/2$) to find a probability of 0.1, or a 10% chance that our draw is between 3.1 and 3.4. 
 The height of the distribution, which here is $1/2$, is called the *probability density* of the distribution.
 
@@ -95,17 +97,17 @@ It's completely unimportant for you to remember the specific equation. It is imp
 
 ## Binomial Distributions: Number of Trials and Probabilities of "Success"
 
-Let's say you're flipping a coin, and you want to know your probability of getting four heads if you flip six times. It should be clear that you can't go to a normal distribution for this problem-- the outcome of a coin flip is *random*, but it's not *continuous*. It can only take one of two values-- heads or tails. For this type of *binary* outcome, we use a **binomial** distribution. 
+Let's say you're flipping a coin, and you want to know your probability of getting four heads if you flip six times. You can't go to a normal distribution for this problem-- the outcome of a coin flip is *random*, but it's not *continuous*. It can only take one of two values-- heads or tails. For this type of *binary* outcome, we use a **binomial** distribution. 
 
-Binomial distributions are also defined by two paramters: the *number of trials*, $n$ (that is, the number of times you flip the coin), and the *probability of success*, $p$ (for a fair coin, the probability of getting "heads" is 0.5). The probability of getting $k$ successes in a binomial distribution is
+Binomial distributions are also defined by two parameters: the *number of trials*, $n$ (that is, the number of times you flip the coin), and the *probability of success*, $p$ (for a fair coin, the probability of getting "heads" is 0.5). The probability of getting $k$ successes in a binomial distribution is
 
 $$P(X=k | n,p) = {{n}\choose{k}}p^k(1-p)^{(n-k)}$$
 Where ${n}\choose{k}$ means "n choose k". ${n}\choose{k}$ is a count of how many different ways you can pull a subset of $k$ elements from a set of $n$ elements. Specifically it means:
 
 $${{n}\choose{k}} = \frac{n!}{k!(n-k)!}$$
-Where $!$ means "factorial"-- $5!$ means $5*4*3*2*1=120$.
+Where $!$ means "factorial"-- $5!$ is $5*4*3*2*1=120$.
 
-Again, the math here doesn't actually matter for this class-- all you really need to know is that binomial distributions describe the paradigm where your outcome can only be one of two options, and you want to *count the number of times you see one of those two options*. Binomial distributions look like this, for some example values of $n$ and $p$:
+Again, the math here doesn't actually matter for you right now-- all you really need to know is that binomial distributions describe the paradigm where your outcome can only be one of two options, and you want to *count the number of times you see one of those two options*. Binomial distributions look like this, for some example values of $n$ and $p$:
 
 [insert wikipedia plot]
 

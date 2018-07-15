@@ -17,7 +17,7 @@ The basic unit of statistics is the **distribution**. Statistics looks at the va
 We'll talk a lot more about distributions next lecture, but for now just get used to the idea of thinking about every data point as a single sample from a varied background. 
 
 ## Descriptive Statisics
-The most basic set of explorations you can conduct on a dataset is what are called *descriptive* statistics-- this is simply understanding what patterns there are in each individual variable of your dataset. Things like, "How many observations are there?" "What is the average value of this variable?" "What are the minimum and maximum values?", etc. Running the `summary()` command on a dataset in R is a great way to get descriptive statistics for each variable. Let's try running `summary()` on the `Davis` dataset, which looks at true versus reported height and weight in adults:
+The most basic set of explorations you can conduct on a dataset is what are called *descriptive* statistics-- this is simply understanding what patterns there are in each individual variable of your dataset. Things like, "How many observations are there?" "What is the average value of this variable?" "What are the minimum and maximum values?", etc. Running the `summary()` command on a dataset in R is a great way to get descriptive statistics for each variable. Let's try running `summary()` on the `Davis` dataset, which looks at true versus self-reported height and weight in adults:
 
 ```{r}
 summary(Davis)
@@ -35,7 +35,7 @@ Let's quickly review the other rows of this summary dataset. There are two types
 print(c(1, 1, 1, 1, 2, 2, 5))
 ```
 
-You calculate the *mean* by adding all these values together and dividing by the number of samples. So here, the mean would be $(1+1+1+1+2+2+5)/5=1.86$. The median, on the other hand, is whatever value is in the middle of this sorted list-- here, it's 1. The value of the median is that 50% of the samples will be greater than (or equal to) it, and the other 50% will be less than (or equal to) it. Another word for the median is the **50th percentile** of the data. 
+You calculate the *mean* by adding all these values together and dividing by the number of samples. So here, the mean would be $(1+1+1+1+2+2+5)/5=1.86$. The median, on the other hand, is whatever value is in the middle of this sorted list-- here, it's 1. The benefit of the median is that 50% of the samples will be greater than (or equal to) it, and the other 50% will be less than (or equal to) it. Another word for the median is the **50th percentile** of the data. 
 
 You can take other percentiles of the data, too. It's common to split the data into 4 parts and describe the **25th percentile**, also known as the **first quartile**, and the **75th percentile**, or **third quartile**. So in the Davis dataset above, the `1st Qu` row of `repwt` tells us that the slimmest 25% of the sample had weights at or below 55 kilos, while the `3rd Qu` row says that the heaviest 25% of people had weigths at or above 73.5 kilos. 
 
@@ -43,6 +43,8 @@ The data visualizations we discussed in Module 1 were all founded on either the 
 
 ## Inference vs. Prediction
 Descriptive statistics, while useful, isn't usually considered a statistical "analysis". Things like regressions or other models are more of the meat-and-potatoes of statistical methods, and these analyses are usually performed for one of two distinct purposes. In both cases, you run some model to establish a relationship between two or more variables.
+
+**todo: what does it mean to "run a model"?**
 
 The first case, known as **inference**, asks the question "What does the relationships between my variables *mean*?" For example, if you run an analysis testing how education, access to health care, and income affect mortality, inferential statistics would be interested in knowing which of those three variables had the biggest impact on mortality, whether or not that impact was *statistically significant*, and what the values and directions were of those relationships. 
 
