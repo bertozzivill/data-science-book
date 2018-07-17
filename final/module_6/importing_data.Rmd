@@ -5,9 +5,9 @@ There have been a few different times now when I've displayed or plotted a datas
 
 ## Dataset Libraries
 
-Last lecture, we focused on libraries mostly as containers for related *functions*, but there are some libraries that also include large numbers of easy-to-load, pre-cleaned *datasets*. Some of these libraries, like the one called `datasets`, are purely collections of datasets, while others, like `car`, are primarily libraries of statistical functions (in this case, conditional auto-regressive models) that happen to have a lot of nice datasets associated with them. 
+Last lecture, we focused on libraries mostly as containers for related *functions*, but there are some libraries that also include large numbers of easy-to-load, pre-cleaned *datasets*. Some of these libraries, like the one called `datasets`, are purely collections of datasets, while others, like `car`, are primarily libraries of statistical functions (in this case, conditional auto-regressive models) that happen to have pre-cleaned example datasets associated with them. 
 
-To load a dataset from a library, you first need to have that library *installed* on your machine and *loaded* into your R session (see last lecture if these terms are unfamiliar). After that, you can load a datset by name using the simple command `data({dataset_name})`.
+To load a dataset from a library, you first need to have that library *installed* on your machine and *loaded* into your R session (see last lecture if these terms are unfamiliar). After that, you can load a dataset by name using the simple command `data({dataset_name})`.
 
 Say we want to load the dataset `Davis` that I used as an example last lecture. That dataset is from the `car` library. Since I've already run `install.packages("car")` on my machine, I don't have to do it again, but if you've never installed the `car` package you should do so now. Then, I would type the following code into my script to load the library, load the dataset, and view the first few rows of that dataset:
 
@@ -17,14 +17,14 @@ data(Davis) # load Davis dataset
 head(Davis) # print out the first 6 lines of the Davis dataset
 ```
 <br>
-You might be wondering how you could possibly know what a dataset is called or what it contains before you access it. You can't, but luckily there are many resources online listing the names and libraries of different datasets, so you can look around for datasets you might be interested in. My personal favorite resource for R datasets can be found [here](https://vincentarelbundock.github.io/Rdatasets/datasets.html).
+You might be wondering how you could possibly know what a dataset is called or what it contains before you access it. Luckily there are many resources online listing the names and libraries of different datasets, so you can look around for datasets you might be interested in. My personal favorite resource for R datasets can be found [here](https://vincentarelbundock.github.io/Rdatasets/datasets.html).
 
 ## What is a Dataset? 2D Arrays
-Let's take a step back and think about dataset structure for a moment, because it's different from anything we've explicitly worked with in R before. This dataset is still a type of *array*, but instead of having one dimension like a vector, it has two-- rows and columns. There are several different types of 2D array, but the most common for datasets in R is a `data.frame`, which is what the `Davis` datset is. 
+Let's take a step back and think about dataset structure for a moment, because it's different from anything we've explicitly worked with in R before. This dataset is still a type of *array*, but instead of having one dimension like a vector, it has two-- rows and columns. There are several different types of 2D array, but the most common for datasets in R is a `data.frame`, which is what the `Davis` dataset is. 
 
-(You can check the type of an object using the `class()` function-- type `class(Davis)` into your Console and see what comes up!) 
+(You can check the type of an object using the `class()` function-- type `class(Davis)` into your Console and see what comes up.) 
 
-`data.frame` aren't the most convenient for some common data operations, and there are a range of packages that people use to make these operations simpler. My preferred package, and the one we'll be using in this course, is called `data.table`. `data.table` works by actually making a `data.frame` into a new data type (naturally, called a `data.table`) that has some nice properties. We'll go into a lot of detail about `data.table` next lecture, so I'm not going to go into too many details here. 
+`data.frame` aren't the most convenient for some common data operations, and there are a range of packages that people use to make these operations simpler. My preferred package, and the one we'll be using in this course, is called `data.table`. `data.table` works by making a `data.frame` into a new data type (naturally, called a `data.table`) that has some nice properties. We'll go into a lot of detail about `data.table` next lecture. 
 
 The most basic convention for 2D arrays extends across all programming languages: when you're *indexing* elements of your array, you always go by row first, then column. The same way that if you were asked to find the point (2, 5) on a plot you would always go 2 to the *right* and then 5 *up*, if you were asked to find the element (2,5) in a 2D array you would always go 2 elements *down*, then 5 *across*. 
 
@@ -38,7 +38,7 @@ Element (2,5) of this matrxi is 170, whereas element (5,2) is 171. What is eleme
 
 In 2D arrays in R, as with our 1D arrays, we index using square brackets `[]`. The row and columns are known as the `i` and `j` elements, respectively, and are separated by a comma. So, if you wanted to see the first row of the `Davis` `data.frame`, you would type:
 ```{r}
-# there's a 1 in the "i" spot to denote that we want the first row, and nothing in the "j" spot to denote that we want all columns. Notice that you still need the comma!
+# there's a 1 in the "i" spot to denote that we want the first row, and nothing in the "j" spot to denote that we want all columns. Notice that you still need the comma
 Davis[1,] 
 ```
 <br>
@@ -52,12 +52,11 @@ Davis[1, "sex"]
 <br>
 And the first column, all rows:
 ```{r}
-# these three lines of code are equivalent:
-# take everything from the "i" position, and only the first element in the "j" position
+# these three lines of code are equivalent: they take everything from the "i" position, 
+# and only the first element in the "j" position
 Davis[, 1] 
 Davis[, "sex"]
-# the '$' operator is a convenient way to just select a column by name
-Davis$sex 
+Davis$sex # the '$' operator is a convenient way to just select a column by name
 ```
 <br>
 All of the methods above return 1D vectors containing all the information you've asked for. If instead you index columns using square brackets `[]` *without* commas, R will return a `data.frame` object with just one column:
@@ -80,7 +79,7 @@ file_path <- "/Users/bertozzivill/repos/data-science-book/final/module_6/pew_rel
 pew_data <- read.spss(file_path, to.data.frame = TRUE)
 ```
 
-I've printed the first six lines of the dataset below-- notice that it's a *mess*. Data you get from sources other than the R defaults are usually much less clean, and take much more time to prep for analysis, than the defaults. However, they're also generally much richer and more interesting datasets.
+I've printed the first six lines of the dataset below-- notice that it's a *mess*. Data you get from sources other than the R defaults are usually much less clean, and take much more time to prep for analysis, than the defaults. However, they're also generally much richer and more interesting.
 
 ```{r}
 head(pew_data)
