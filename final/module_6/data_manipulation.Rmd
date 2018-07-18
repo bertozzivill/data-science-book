@@ -3,13 +3,13 @@
 
 ## Getting Started with `data.table`
 
-My favorite package for data manipulation in R is called `data.table`. Go ahead and install it, and then load it into your R session:
+My preferred package for data manipulation in R is called `data.table`. Go ahead and install it, and then load it into your R session:
 
 ```{r}
 library(data.table) # quiz: why don't I have an 'install.packages("data.table")' command in this code?
 ```
 <br>
-Let's also load the `Salaries` dataset from the `car` library (remember this dataset? You wrote an essay about it!):
+Let's also load the `Salaries` dataset from the `car` library:
 ```{r}
 library(car)
 data(Salaries)
@@ -37,16 +37,16 @@ Also, check this out:
 print(Salaries)
 ```
 <br>
-Instead of printing out the whole damn dataset, `data.table` objects usefully collapse themselves for display, so you only see the first and last five rows. Easier already!
+Instead of printing out the entire dataset, `data.table` objects usefully collapse themselves for display, so you only see the first and last five rows. Easier already!
 
 ## `i`, `j`, and `by`
 Last lecture, we learned about *indexing* operations on datasets using square brackets, `[]`. `data.table` uses square brackets too, but they're much more than just indexers-- you can also use them to *append* and *remove* columns, and to *aggregate* the entire dataset. Here's how it works:
 
 Last time I introduced you to the convention that indexing operations in 2D arrays have two components: `i` for rows, and `j` for columns, always arranged like so: `[i, j]`. Operations within square brackets in `data.table` are similar, but they have an extra component: `by`. A typical command in `data.table` would be of the format `[i, j, by]`. These break down as follows:
 
-* The `i` component, as you'd expect, selects what rows you want to focus on. this can be done using indexing operations like we learned last lecture, but can also be done using *logical statements*. 
+* The `i` component selects what rows you want to focus on. this can be done using indexing operations like we learned last lecture, but can also be done using *logical statements*. 
 * The `j` component selects what columns you want to focus on, but can also be used to *add* or *remove* columns based on other values in the dataset.
-* The `by` component is used exclusively when you want to *aggregate* your dataset, and indicates what columns you want to *group* on. 
+* The `by` component is used exclusively when you want to *aggregate* your dataset, and indicates what columns you want to *group* on. More on this later.
 
 ### `i`
 Of the three, `i` is the one that works most like it used to when we talked about indexing last lecture. `i` is still used in `data.table` to **select** a set of rows:
@@ -61,7 +61,9 @@ Secondly, notice that even after these operations on `Salaries`, the `Salaries` 
 ```{r}
 print(Salaries)
 ```
-This is because an operation **only changes the value of an object if you assign it to that object's name**. This seemed to be a sticking point in the Intro to R quiz. If I have a vector named `example_vector` equal to `c(3, 5, 12, 4, 15, 32, 9, 12)` and I run the command `c(example_vector,7)`, *the screen will print out the result of that concatenation observation*, but `example_vector` will remain unchanged`. Let's verify that:
+
+**todo: make this into more of a reminder about execution vs assignment**
+This is because an operation **only changes the value of an object if you assign it to that object's name**. If I have a vector named `example_vector` equal to `c(3, 5, 12, 4, 15, 32, 9, 12)` and I run the command `c(example_vector,7)`, *the screen will print out the result of that concatenation observation*, but `example_vector` will remain unchanged`. Let's verify that:
 ```{r}
 # create example_vector, and print it to the screen
 example_vector <- c(3, 5, 12, 4, 15, 32, 9, 12)
@@ -84,15 +86,14 @@ Ok, back to `i` statements!
 ```{r}
 Salaries[sex=="Female"]
 ```
-<br> 
+ 
 Convenient, right? You can do all kinds of stuff with logic in your `i` statements:
 ```{r}
 Salaries[sex=="Female" & yrs.since.phd>15] # logical statement with multiple arguments
 Salaries[sex=="Other"] # This returns an empty data.table, since there's no "Other" sex in this dataset
 Salaries[sex=="Female "] # Careful! You included an extra space within your quotations. This will return an empty dataset, too.
 ```
-<br>
-<br>
+
 
 ### `j`
 `j` statements can be used, most simply, as a way of subsetting columns:
@@ -101,9 +102,9 @@ Salaries[, list(rank)]
 Salaries[, list(rank, discipline, salary)]
 ```
 <br> 
-You should notice two things about this code. The first is that, for `j` statements, I *always* need to include a comma. That single comma is indicating that there's an (in this case, empty) `i` statement in this operation. Without that comma, the code would be evaluated as an `i` statement and it would break. 
+You should notice two things about this code. The first is that, for `j` statements, I *always* need to include a comma. That single comma is indicating that there's an (in this case, empty) `i` statement in this operation. Without that comma, the `j` statement code would be evaluated as an `i` statement and it would break. 
 
-The second thing to notice is that I put all the columns I wanted to keep in this thing called list(). Functionally, this is a way of subdividing the command so R doesn't get confused about which commas are between columns you want to keep, and which are separating different parts of your `data.table` statement. 
+The second thing to notice is that I put all the columns I wanted to keep inside a function called list(). **todo: better job as explaining list()** Functionally, this is a way of subdividing the command so R doesn't get confused about which commas are between columns you want to keep, and which are separating different parts of your `data.table` statement. 
 
 
 #### Returning New Columns with `j`
@@ -125,7 +126,7 @@ Salaries[, list(discipline, sex, salary, yrs.diff=yrs.since.phd-yrs.service)]
 #### Creating New Columns with `j`
 Again as stressed above, all of these operations print a *new dataset* to the screen that has the properties you want. However, it's very common to want to actually add a new column to the `Salaries` dataset itself, so `data.table` has a shortcut for that using a special assignment operator that looks like this: `:=`. This operator assigns values *within* a `data.table`, instead of making an entirely new object. **When you use the `:=` operator, you are changing values in your original dataset!**
 
-That `yrs.diff` column seemed useful, let's actually add that to the Salaries datset itself:
+That `yrs.diff` column seemed useful, let's add that to the Salaries datset itself:
 ```{r, results='hide'}
 Salaries[, yrs.diff:=yrs.since.phd-yrs.service] 
 ```
@@ -174,6 +175,9 @@ You can also use `by` with the `:=` operator to make new columns that are equal 
 ```{r} 
  Salaries[, max.salary.in.rank:=max(salary), by=list(rank)]
 ```
+
+**todo: add more 'quiz questions' throughout**
+
 <br>
 **Question 1**: How would you delete the `max.salary.in.rank` column in the dataset? <br>
 **Question 2**: What would you type if you instead wanted to find the minimum salary, by rank and discipline?
@@ -186,7 +190,5 @@ Salaries[sex=="Female", list(mean.yrs.since.phd=mean(yrs.since.phd))]
 Salaries[sex=="Male", list(mean.yrs.since.phd=mean(yrs.since.phd)), by=list(rank)]
 Salaries[sex=="Male", list(mean.diff=mean(yrs.since.phd-yrs.service)), by=list(rank)]
 ```
-
-Whew, that was a *lot* of material. Go take a break, drink a smoothie, and let's come back for some merging and reshaping operations!
 
 
