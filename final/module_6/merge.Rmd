@@ -11,6 +11,8 @@ library(data.table)
 
 ## Merging
 Let's say I have two datasets about students' test scores, named `scores_exam_1` and `scores_exam_2`:
+**todo: make data.table creation its own thing?**
+
 ```{r}
 ## note: this is how you make a data.table from scratch! The values to the left of the "=" are column names, the vectors to the right are the values. You should recognize most of these functions, except "sample". Type ?sample into your console to learn what it does.
 scores_exam_1 <- data.table(class_section=c(rep("A", 5), rep("B", 6)),
@@ -25,16 +27,17 @@ print(scores_exam_2)
 ```
 
 <br>
-I'd like to make these into a single dataset so that I can (for example) take the difference between the two test scores for each student, or plot one test score against the other. How can I do this? Using the `merge()` command, of course!
+I'd like to make these into a single dataset so that I can (for example) take the difference between the two test scores for each student, or plot one test score against the other. The `merge()` command helps me accomplish this. 
 
 Let's take a look back up at our datasets. Each one has three columns: `student_id`, `class_section`, and some sort of "score" variable. The `student_id` and `class_section` variables are the same in each dataset, while the "score" variable has both a *different name* and *different values*. What we'd like to end up with is a dataset with *four* variables: `student_id`, `class_section`, `score_1`, and `score_2`:
 ```{r, echo=F}
 merge(scores_exam_1, scores_exam_2, by=c("class_section", "student_id"))
 ```
 
+**todo: update with new knowledge about "by" being unnecessary (!!)**
 `merge()` takes three main arguments: `x`, `y`, and `by`[^1]. `x` and `y` are the datasets you want to merge together, while `by` is a vector of the column names the two datasets have in *common*. This is how R knows which row to line up with which in any given dataset. So, to merge my two datasets together, I would do: 
 
-[^1]: Note: No relation to the`by` argument you use within `data.table` commands!
+[^1]: Note: No direct relation to the`by` argument you use within `data.table` commands.
 ```{r}
 merge(scores_exam_1, scores_exam_2, by=c("class_section", "student_id"))
 ```
@@ -44,7 +47,7 @@ Notice that I need to include *both* `class_section` and `student_id` in order t
 merge(scores_exam_1, scores_exam_2, by=c("student_id"))
 ```
 <br>
-Whoa, that's not what we wanted! That's some weird mix of stacking and merging and it's not useful. Be careful! 
+Whoa, that's not what we wanted! That's some weird mix of stacking and merging and it's not useful. 
 
 There's one more argument type you should be aware of in `merge()`: the `all`, `all.x`, and `all.y` arguments. To understand why they're useful, let's say that a new class section was added between exams 1 and 2, so you `scores_exam_2` has a class section, "C", that `scores_exam_1` lacks:
 ```{r}
