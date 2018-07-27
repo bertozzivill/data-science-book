@@ -37,6 +37,7 @@ scores[, mean_score_2:=mean(score_2), by=list(class_section)]
 ```
 <br>
 
+**todo: an example where you repeat yourself more than once. really let the tedium dig in**
 ...But then I'd be repeating myself, and I hate doing that. It would be great if, instead, I could combine both of the "score" columns into a single column, with a new column to identify which exam they came from:
 ```{r, echo=F}
 melt(scores, id.vars=c("student_id", "class_section"), variable.name="exam", value.name="score")
@@ -44,6 +45,8 @@ melt(scores, id.vars=c("student_id", "class_section"), variable.name="exam", val
 If my dataset were in that format, I could just run one quick "by" command and be done with it! (Test yourself: what command would I run on the dataset above to get the *mean* score *by* exam and class section?) 
 
 ### Melting
+
+**todo: go into more detail about what you mean by 'change the shape of'**
 
 Any time you want to change the shape of your dataset, either by making multiple columns into one column or by making one column into several, it's called a **reshape** operation. The type of reshape we're describing here, where several columns become a single column, is called a **melt** or a **reshape long**. They work using the `melt` command from the `data.table` package:
 ```{r}
@@ -108,7 +111,7 @@ This is a mistake in the documentation-- if you do `?UScereal` you'll see that t
 
 It's extremely common in data science not to notice mistakes or discrepancies like these right away-- I honestly didn't catch the potassium thing until I looked at the means of those reshaped results. (Visualization is another great way to catch weird things in your data, we'll talk about that next lecture). This is one of many reasons why writing *scripts* is so important-- it allows you to go back and make a change in your workflow without having to rewrite all the steps that came after it. 
 
-Ok, I've droned on for a *long* time about melting now-- take a break, watch a gif of this cute animal, and let's come back to have a discussion about melting's sister operation, **casting**. 
+What if, instead of collapsing several dataset columns into one, we want to pull the contents of one column into several? On to melting's sister operation, **casting**. 
 
 ### Casting
 
@@ -132,6 +135,7 @@ The first argument, as usual, is the dataset onto which we want to perform a res
 
 The final argument, `value.var`, is the column whose entries you want to reshape to fill the columns that you've just created. This diagram gives an excellent breakdown of a casting operation:
 
+**todo: introduce this earlier?**
 [insert dcast figure]
 
 For another example, let's go back to our student test scores. Up above we melted the dataset so that exam type was *long*:
