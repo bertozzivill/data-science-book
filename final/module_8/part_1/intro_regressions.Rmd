@@ -16,6 +16,8 @@ Put very simply, a regression is a way of drawing this line:
 
 The method that we used to draw that line is called **Ordinary Least Squares** or OLS, and is one of the simplest and most powerful tools in statistics. We'll go over all its strengths and shortcomings in great detail next lecture. 
 
+**todo: also claiming that there is a relationship**
+
 Now, I know you've all seen this regression line, often colloquially called a "best-fit line", before. It's a common plotting device. But I want you to take a minute to think about what exactly it means. What we're claiming, by the act of drawing that line, is that *the relationship between Years Since Ph.D and Salary is a **linear** one*. *Specifically*, we're claiming that it's a linear relationship governed by whatever equation we used to draw that line. 
 
 Remember, a line in 2D space is defined by just *two* variables: an **intercept**, which is what y-value the line has when the x-variable equals zero; and a **slope**, which refers to how steep the line is. The slope tells you how far *up* (or down) you go in the y-direction for every single unit you move to the right in the x-direction.
@@ -35,10 +37,15 @@ The only time that regressions *can* be used to show causation are in the cases 
 
 For data that involves humans, just about the only way to prove causation is through a *randomized control trial*, which is the same thing as the experiment described above, but with people instead of petri dishes: Take a random sample of people with cancer, give half of them a drug and half of them a placebo, and see who dies more. You also see a lot of randomized trials in advertisement and A/B testing in businesses. Outside of those realms, though, assume that you can never prove causation. 
 
+**add bit about spurious correlations**
+
 ## Significance and Uncertainty
-See the slightly shaded area surrounding our regression line in the plot above? That's the **95% confidence interval** of your data. Since we're working in a Frequentist framework right now, what that means is that if you were to resample your data from the population 100 times, 95 of those times your regression line should still fall within that shaded interval. Since any regression result is by definition an *estimate*, it's extremely important to include *uncertainty* values like confidence intervals around your estimates so you understand how strong of a signal you're capturing. If those shaded areas stretched across a huge band of salaries, we should be less trusting of our regression estimate. 
+See the slightly shaded area surrounding our regression line in the plot above? That's the **95% confidence interval** of your data. What that means is that if you were to resample your data from the population 100 times, 95 of those times your regression line should still fall within that shaded interval. Since any regression result is by definition an *estimate*, it's extremely important to include *uncertainty* values like confidence intervals around your estimates so you understand how strong of a signal you're capturing. If those shaded areas stretched across a huge band of salaries, we should be less trusting of our regression estimate. 
 
 A component of the regression that you *can't* see on the plot is its **significance**. Ever heard of a **p-value**? That's how statistical significance is described. 
+
+**todo: introduce hypothesis testing broadly first**
+
 
 ### p-value Overview
 One of the most intuitive and common ways to think of a p-value is as "the probability that your regression estimate is wrong". If your p-value is low, there's a low chance you're wrong. Awesome! 
@@ -51,6 +58,10 @@ Let's break this down. First off, what the heck is the null hypothesis, and what
 
 ### The Null Hyphothesis
 The **null hypothesis** is the negation of your experimental hypothesis. In our salaries example, our hypothesis was "Years Since Ph.D is associated with Salary". So, the null hypothesis is "Years Since Ph.D has no association with Salary". The null hypothesis is always an effect size of zero. 
+
+**Todo: remove frequentist/bayesian lingo**
+**is this rewritten better in my class notes?**
+
 
 Now, remember that in Frequentist statistics you're always imagining that there are infinitely many worlds in which you can sample data and run regressions infinitely many times. So, let's imagine that in reality, there really is no association between years since Ph.D and salary. When you sample data from professors and run a regression, in most cases you'll get an effect size very close to zero. But, because sampling is a random process and all random processes are described by *distributions*, sometimes, out of sheer bad luck, you'll sample a bunch of data that *does* show an association between years since Ph.D and salary.
 
