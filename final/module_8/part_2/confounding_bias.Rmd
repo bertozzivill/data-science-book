@@ -15,7 +15,9 @@ Last lecture, we ran a *bivariate* regression on "years Since Ph.D" and salary i
 
 Now let's say that we have some way of discovering the *true* relationship between these two variables. Ideally, we hope that the two are about the same-- that the true value of the covariate on "years since Ph.D" is right around \$985.30. But what if the true value of the covariate is only \$600? We've messed up-- we estimated the *red* line below, when the true relationship was described by the *blue* line.
 
-```{r}
+**todo: test what coefficient becomes when you account for heteroskedasticity**
+
+```{r, echo=F}
 data(Salaries)
 Salaries <- data.table(Salaries)
 
@@ -27,7 +29,6 @@ Salaries[, true_relationship:= intercept + yrs.since.phd*600]
 Salaries <- melt(Salaries, id.vars=c("yrs.since.phd", "salary"), measure.vars = c("estimated_relationship", "true_relationship"))
 Salaries[, variable:= ifelse(variable=="estimated_relationship", "Estimated Relationship", "True Relationship")]
 
-png(paste0(main_dir, "est_true_regression.png"))
 ggplot(Salaries, aes(x=yrs.since.phd)) +
   geom_point(aes(y=salary)) +
   geom_line(aes(y=value, color=variable), size=2)+
@@ -35,10 +36,8 @@ ggplot(Salaries, aes(x=yrs.since.phd)) +
        x="Years Since Ph.D",
        y="Salaries",
        color="")
-graphics.off()
 ```
 
-[insert scatter with regression line and related line with different slope]
 
 Specifically, our method for estimating our relationship of interest produced an estimator that was **biased**. What is bias, and how do we prevent it?
 
@@ -92,7 +91,7 @@ To that list, we can unfortunately also add factors such as:
 
 By excluding any of these variables from our model specification, we're **overemphasizing the role that "years since Ph.D" plays** in determining salary, resulting in a biased estimate for the effect of "years since Ph.D".  
 
-You should be able to guess the solution to omitted variable bias: just include those variables in the regression! This turns our equation from a *bivariate* (two-variable) to a *multivariate* (many-variable) regression, and we'll go over the details of that next week. 
+You should be able to guess the solution to omitted variable bias: just include those variables in the regression! This turns our equation from a *bivariate* (two-variable) to a *multivariate* (many-variable) regression, and we'll go over the details of that next section 
 
 ## Causal Pathways and Variable Inclusion
 
@@ -111,13 +110,15 @@ There are three remaining classes a variable might fall into: **confounders**, *
 
 When you run a regression, you are almost always interested in how just two variables interact: your predictor of interest, and your outcome. In our example, we want to know the effect that "years since Ph.D" has on salary. We think that "years since Ph.D" has an effect on salary, so our proposed causal pathway is this:
 
+**todo: make this a better figure**
+
 yrs.since.phd --> salary 
 
 Any other variables you include, you include because they have some impact on this causal pathway, but what type of impact they have depends on which of the three classes they fall into. 
 
 ### Confounders
 
-A **confounder** is *a variable that is associated with **both** your predictor and outcome variable, but that does NOT lie on the causal pathway between them*. "Number of publications" would be a classic confounder in our salaries regression: how long it's been since your Ph.D is almost certainly associated with how many papers you've published, and the number of papers you've published is likely associated with your salary, but the relationship cannot be describes simply as "It's been longer since my Ph.D, *therefore* I have more publications, *therefore* I have a higher salary." Both "years since Ph.D" and "number of publications" are independently considered in determining someone's salary level. 
+A **confounder** is *a variable that is associated with **both** your predictor and outcome variable, but that does NOT lie on the causal pathway between them*. "Number of publications" would be a confounder in our salaries regression: how long it's been since your Ph.D is almost certainly associated with how many papers you've published, and the number of papers you've published is likely associated with your salary, but the relationship cannot be described simply as "It's been longer since my Ph.D, *therefore* I have more publications, *therefore* I have a higher salary." Both "years since Ph.D" and "number of publications" are independently considered in determining someone's salary level. 
 
 Confounders interact with the causal pathway like so:
 
@@ -129,7 +130,7 @@ Of our list above, the strongest confounder is sex. Sex can be associated with "
 
 Sex is also, of course, associated with salary: the gender pay gap is well documented, though its precise causes are disputed. 
 
-Looking at the Salaries dataset, we can see the assocaition between sex and our two variables of interest: women have both a considerably lower mean salary and fewer years since Ph.D compared to men:
+Looking at the Salaries dataset, we can confirm the assocaition between sex and our two variables of interest: women have both a considerably lower mean salary and fewer years since Ph.D compared to men:
 
 ```{r, include=T}
 data(Salaries)
@@ -196,7 +197,7 @@ We want to know what effect smoking has on lung cancer. Our hypothesis is that s
 
 Is coffee drinking a confounder, a mediator, or an effect modifier?
 
-Well, coffee drinking is associated with both the predictor and outcome, so it can't be an effect modifier. The next question we need to ask is: is it on the causal pathway? If it were, we could reasonably make the claim that smoking *causes* you to drink coffee, which *causes* lung cancer. That seems hard to back up. It's more plausible to say that smokers are more likely to be coffee drinkers because smokers are more likely to have addictive personalities, but that coffee drinking is not directly on the causal pathway between smoking and lung cancer. Therefore, coffee drinking is a **confounder** in this case. 
+Well, coffee drinking is associated with both the predictor and outcome, so it can't be an effect modifier. The next question we need to ask is: is it on the causal pathway? If it were, we could reasonably make the claim that smoking *causes* you to drink coffee, which in turn *causes* lung cancer. That seems hard to back up. It's more plausible to say that smokers are more likely to be coffee drinkers because smokers are more likely to have addictive personalities, but that coffee drinking is not directly on the causal pathway between smoking and lung cancer. Therefore, coffee drinking is a **confounder** in this case. 
 
 #### 3. Caf&eacute; Location, Coffee Drinking, and Productiveness
 
@@ -212,7 +213,7 @@ Well, coffee drinking is associated with both the predictor and outcome, so it c
 
 
 
-```{r}
+```{r, echo=F}
 ## Pause for lots of plotting
 
 n=50
@@ -225,45 +226,10 @@ example[, value:=id^2+random + abs(min(random)-1)]
 reg <- lm(value~id, data=example)
 example[, predicted:=predict(reg)]
 
-png(paste0(main_dir, "x2_data.png"))
-ggplot(example, aes(x=id)) +
-  geom_point(aes(y=value))+
-  labs(title="Example Data",
-       x="Variable",
-       y="Value")
-graphics.off()
-
-png(paste0(main_dir, "x2_data_with_regression.png"))
-ggplot(example, aes(x=id)) +
-  geom_point(aes(y=value))+
-  geom_line(aes(y=predicted), color="red", size=1) +
-  labs(title="Example Data with Linear Regression",
-       x="Variable",
-       y="Value")
-graphics.off()
-
-
 example[, new_value:=sqrt(value)]
 new_reg <- lm(new_value~id, data=example)
 
 example[, predicted_new:= predict(new_reg)]
-
-png(paste0(main_dir, "x2_data_transformed.png"))
-ggplot(example, aes(x=id)) +
-  geom_point(aes(y=new_value))+
-  labs(title="Example Data, Transformed",
-       x="Variable",
-       y="sqrt(Value)")
-graphics.off()
-
-png(paste0(main_dir, "x2_data_transformed_with_regression.png"))
-ggplot(example, aes(x=id)) +
-  geom_point(aes(y=new_value))+
-  geom_line(aes(y=predicted_new), color="red", size=1) +
-  labs(title="Example Data with Linear Regression, Transformed",
-       x="Variable",
-       y="sqrt(Value)")
-graphics.off()
 
 ```
 
@@ -271,11 +237,25 @@ graphics.off()
 
 Finally, we need to describe a common problem in statistics that does *not* fall under the label of "bias". Let's say we have data that looks like this:
 
-[insert data picture]
+```{r, echo=F}
+ggplot(example, aes(x=id)) +
+  geom_point(aes(y=value))+
+  labs(title="Example Data",
+       x="Variable",
+       y="Value")
+```
+
 
 Based on what we've learned so far, if I wanted to know the relationship between these two variables I would run a linear regression, which would look something like this:
 
-[insert regression picture]
+```{r, echo=F}
+ggplot(example, aes(x=id)) +
+  geom_point(aes(y=value))+
+  geom_line(aes(y=predicted), color="red", size=1) +
+  labs(title="Example Data with Linear Regression",
+       x="Variable",
+       y="Value")
+```
 
 This would of course be wrong, because I'd be trying to fit a line to data that *is not linear*. This is a type of model misspecification called misspecifying the **functional form** of the model. In this case, the data is quadratic (I added some noise to the function $x^2$ and plotted it). 
 
@@ -303,12 +283,23 @@ print(transformed_vector)
 <br> 
 We can use transformations to make nonlinear data into linear data. For example, the dataset I plotted up above followed a quadratic curve (it was generated by the function $y=x^2$). If I wanted to *transform* this into the *linear* function $y=x$, I would need to take the *square root* of every y value. The transformed data would look like this:
 
-[insert transformed plot]
+```{r}
+ggplot(example, aes(x=id)) +
+  geom_point(aes(y=new_value))+
+  labs(title="Example Data, Transformed",
+       x="Variable",
+       y="sqrt(Value)")
+```
 
 
 Now that's a linear relationship! We can run a linear regression on that:
 
-[insert transformed regression plot]. 
+ggplot(example, aes(x=id)) +
+  geom_point(aes(y=new_value))+
+  geom_line(aes(y=predicted_new), color="red", size=1) +
+  labs(title="Example Data with Linear Regression, Transformed",
+       x="Variable",
+       y="sqrt(Value)")
 
 Now we've acheived our original goal, but we need to be extremely careful with our interpretation of the results. Our outcome variable is no longer simply "value", it is the *square root* of "value". So our interpretation of this regression would be "For every unit increase in 'variable', the square root of 'value' increases by $\beta$."
 

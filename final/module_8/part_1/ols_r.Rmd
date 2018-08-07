@@ -1,9 +1,11 @@
 
 # OLS in R
 
+**todo: put rm(list=ls()) somewhere**
+
 Refresher: We're wondering how `yrs.since.phd` is associated with `salary` in the `Salaries` dataset from the `car` library. If you haven't already. load the necessary libraries, load this dataset, and convert it to a `data.table`. Also load the `ggplot2` library, we'll need it later.
 
-```{r, echo=F}
+```{r}
 library(data.table)
 library(ggplot2)
 library(car)
@@ -48,10 +50,10 @@ The `data` argument to `lm` is easy, it's just the name of your dataset.
 
 ### Putting it Together
 
-It's finally time to run our first regression. The `formula` argument comes before the `data` one, so we write:
+It's finally time to run our first regression. We write:
 
 ```{r}
-regression_output <- lm(salary ~ yrs.since.phd, data=Salaries)
+regression_output <- lm(formula=salary ~ yrs.since.phd, data=Salaries)
 print(regression_output)
 ```
 <br> 
@@ -69,10 +71,10 @@ Running `print(regression_output)` gave us results that were easy to interpret, 
 summary(regression_output)
 ```
 <br>
-Whoa! That's a lot more information! Let's walk through each section at a time. 
+That's a lot more information! Let's walk through each section at a time. 
 
 ### `Call`
-This is the same as when you use your `print` command-- just an echo of specifically what code you ran to generate this regression output. Useful for reference. 
+This is the same as when you use your `print` command-- just an echo of specifically what code you ran to generate this regression output. It's useful for reference. 
 
 ### `Residuals`
 Remember what a residual is? Its' the difference between a given data point and the predicted regression line. If you do `regression_output$residuals`, you'll see that the residuals are a *vector* with as many entries as there are rows in the dataset, specifying the residual for each data point in turn. The summarized output just shows you some range values for your residuals. Residuals are calculated by subtracting the value of the *regression output* from the value of the *data point*. So, in the regression we just ran, our predicted line is at maximum \$84,171 *higher* than the data points it predicts for, and at minimum \$102,383 *lower* than the data points it predicts for. 
@@ -84,11 +86,12 @@ The `Estimate` column gives us the estimated $\beta$, or coefficient, value for 
 
 The `Std. Error` column gives us the estimated standard errors for each variable. Thinking back to the distributions we made last time, we see that the standard error for the `yrs.since.phd` variable is pretty small, meaning that there's not much uncertainty about the value of this coefficient. 
 
-The `t value` column is used in the calculation of p-values, beyond the scope of this class.
+The `t value` column is used in the calculation of p-values, beyond the scope of this book.
 
 The confusingly-named `Pr(>|t|)` column gives us p-values for each variable. The asterisks next to them, as explained in the `Signif. codes` section underneath the table, indicates how statistically significant each coefficient is. For very small numbers, p-values are specified in *scientific notation*. So `2e-16` means $2*10^{-16}$, or $0.0000000000000002$. That's really, really small! Way below $0.05$, the classic cutoff for statistical significance. You'll see the `<2e-16` p-value often: it's what R uses when the p-value is to small to represent any other way. 
 
 ### Others
+**todo: clarify what you mean by r-squared definition**
 The final three lines of this output give us some useful statistics for the regression as a whole. The only one of these I want you to pay attention to is the Adjusted R-squared value. R-squared, along with p-value, is another common statistic for assessing the goodness-of-fit of your model. the R-squared value will tell you *how much variation in your outcome variable can be predicted by your predictor variable*. If the data were a straight line, the R-squared value would be 1. If the data were random noise, R-squared would be close to zero (or could, in some cases, even be negative). Here we have an adjusted R-squared of 0.1737, meaning that only about 17% of the variance in `salary` can be explained by `yrs.since.phd`. 
 
 ### Some Things to Note About Regression Outputs:
@@ -100,9 +103,16 @@ The final three lines of this output give us some useful statistics for the regr
 
 ## Predicting From Regression Outputs
 
+**todo: where do I talk about inference and prediction?**
 Remember our motivations for statistical analysis: inference and prediction. The regression outputs as they stand tell us everything we need to know about inference, but what about prediction? How do we guess what a person's salary is, based on their years since Ph.D?  For that, we use the `predict` function. 
 
-`predict` by default takes only one argument-- the output of the linear regression you run. So, if we ran `predict(regression_output)` we would get a vector of predicted salary values for each professor in our dataset. It's common to save this as a column in the dataset itself:
+`predict` by default takes only one argument-- the output of the linear regression you run. So, if we ran `predict(regression_output)` we would get a vector of predicted salary values for each professor in our dataset:
+
+```{r}
+predict(regression_output)
+```
+
+It's common to save this as a column in the dataset itself:
 
 ```{r}
 Salaries[, predicted_salary:= predict(regression_output)]
@@ -190,7 +200,7 @@ Using the `Salaries` example above as a guide, see if you can determine:
 
 I'll give you the answer to the third question: 
 
-**"A cereal with zero grams of fat is expected to have 117.6 calories,, and every additional gram of fat adds 22.36 to that cereal's expected caloric value."**
+**"A cereal with zero grams of fat is expected to have 117.6 calories, and every additional gram of fat adds 22.36 to that cereal's expected caloric value."**
 
 Let's plot this regression! Remember, we can create a new column in the dataset with predicted values using `predict`:
 ```{r, results='hide'}
