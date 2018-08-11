@@ -43,7 +43,7 @@ If you're comfortable interpreting bivariate regressions, this should look prett
 
 If we wanted to interpret these regression results in a sentence, we would say "A professor with zero years since his/her Ph.D and zero years of service is expected to have a salary of \$89,912.20. Every additional year since Ph.D *increases* expected salary by \$1,562.90, and every additional year of service *decreases* expected salary by \$629.10."
 
-
+**todo: talk about plotting this**
 
 ### Categorical Variables 
 
@@ -53,6 +53,7 @@ Now, let's take a look at the regression output for our `multivariate_categorica
 summary(multivariate_categorical)
 ```
 <br>
+**todo: add the terminology "incorporated into the intercept" to the previous page**
 Ok, this looks a little bit different than what we had before. We still have an intercept estimate and a `yrs.since.phd` coefficient, but our third row is now `sexMale`, when you might have expected it to just be `sex`. Remember that for categorical variables, one value is *incorporated into the intercept*, and every other value gets its own coefficient that gets *added* to that intercept. So here, The `(Intercept)` value refers to the regression intercept for *females*, and the `(Intercept)` value **plus** the `sexMale` value gives the regression intercept for *males*. 
 
 You would interpret this regression like so: "A *female* professor with zero years since her Ph.D has an expected salary of \$85,181.80, while a *male* professor with zero years since his Ph.D has an expected salary of (\$85,181.80 + \$7,923.60) = \$93,105.40. Every additional year since Ph.D increases a professor's expected salary by \$958.10."

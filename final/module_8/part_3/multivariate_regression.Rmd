@@ -14,7 +14,7 @@ main_dir <- "/Users/bertozzivill/repos/data-science-book/final/module_8/part_3/"
 
 ## Motivation: Bivariate Regression is Often Biased
 
-Last week we learned that including just our two variables of interest in our regression is usually not enough-- there are usually other *confounding factors* or *effect modifiers* that we need to consider in our analysis. This page should help you understand how to design and conceptualize multivariate regressions. 
+Last section we learned that including just our two variables of interest in our regression is usually not enough-- there are usually other *confounding factors* or *effect modifiers* that we need to consider in our analysis. This page should help you understand how to design and conceptualize multivariate regressions. 
 
 ## The Math of Multivariate Regression: Just Add Variables!
 
@@ -32,6 +32,7 @@ Now, instead of just *one* variable (`yrs.since.phd`) influencing our expected s
 
 A good way of thinking about a multivariate regression is that we're finding a series of *weights* we can apply to determine how important each of the variables is. Watch this video for an example:
 
+**todo: instead of video, just point to lecture or write it out**
 ### Video: Thinking of Regression as a Way of Adding Weights (plant-buying examples)
 
 
@@ -44,7 +45,7 @@ Back to our newfangled regression equation:
 
 $$salary = \beta_0 + \beta_1yrs.since.phd + \beta_2sex + \beta_3discipline + \beta_4yrs.service + \varepsilon$$
 
-You'll notice something a little interesting about this equation: It includes both *continuous* variables (like "years since Ph.D" and "years of service") and *categorical* variables like "sex" and "rank". These are treated very differently by the regression, and have different interpretations. Remeber this guideline: **continuous varaiables add slopes, categorical variables add intercepts**. I'll go over them below, using simplified versions of the full regression equation. 
+You'll notice something a little interesting about this equation: It includes both *continuous* variables (like "years since Ph.D" and "years of service") and *categorical* variables like "sex" and "discipline". These are treated differently by the regression, and have different interpretations. Remember this guideline: **continuous varaiables add slopes, categorical variables add intercepts**. I'll go over them below, using simplified versions of the full regression equation. 
 
 ### Continuous Variables: Add a Dimension
 
@@ -52,7 +53,7 @@ Look at our original bivariate regression specification:
 
 $$ salary = \beta_0 + \beta_1yrs.since.phd + \varepsilon$$
 
-Hopefully by this point you could all tell me in your sleep how to interpret this equation: **A professor with zero years since his/her Ph.D is expected to earn a salary of $\beta_0$. Every additional year since Ph.D increases that expected salary by $\beta_1$.**
+Hopefully by this point you could all tell me in your sleep how to interpret this equation: **A professor with zero years since his/her Ph.D is expected to earn a salary of $\beta_0$. Every additional year since Ph.D increases that expected salary by $\beta_1$.** You can plot this relationship easily, because there are just two dimensions: years since PhD, and salary. 
 
 Now, let's add just the "years of service" variable to the regression equation:
 
@@ -84,16 +85,14 @@ p <- plot_ly(Salaries) %>%
 
 To visualize this relationship, you need to think in three dimensions. Before, with our bivariate regression, we could plot the relationship on a 2D graph: "years since Ph.D" on the x-axis, salary on the y-axis.
 
-```{r, include=F}
+```{r}
 biv_reg <- lm(salary~yrs.since.phd, data=Salaries)
 Salaries[, biv.reg:= predict(biv_reg)]
 
-png(paste0(main_dir, "bivariate.png"))
 ggplot(Salaries, aes(x=yrs.since.phd)) + 
   geom_point(aes(y=salary), color="blue", alpha=0.5) +
   geom_line(aes(y=biv.reg), color="orange", size=1) +
   labs(title="Bivariate Regression")
-graphics.off()
 ```
 
 
@@ -115,11 +114,11 @@ It becomes impossible to visualize regressions this way when you add more than t
 
 ### Categorical Variables: Stratify Your Dataset
 
-Adding a categorical variable to your regression is a different thing entirely from adding a continuous one. Instead of expanding your line out into another dimension, you're stratifying it--making a different regression line for different values of your predictor variable. You don't wind up with a 3-dimensional plot, you wind up with a 2-D plot with different lines on it. For example, the regression with `yrs.since.phd` and `sex` that we run below can be plotted as:
+Adding a categorical variable to your regression is a different thing entirely from adding a continuous one. Instead of expanding your line out into another dimension, you're stratifying it--making a different regression line for different values of your predictor variable. You don't wind up with a 3-dimensional plot, you wind up with a 2-D plot with multiple lines on it. For example, the regression with `yrs.since.phd` and `sex` that we run below can be plotted as:
 
 [insert sex-based plot]
 
-```{r, include=F}
+```{r, echo=F}
 reg_cat_sex <- lm(salary~yrs.since.phd+sex, data=Salaries)
 Salaries[, reg.cat.sex:=predict(reg_cat_sex)]
 
@@ -128,14 +127,12 @@ newdata<-data.table(yrs.since.phd=rep(0:60, 2),
                    )
 newdata[, predicted_salary:= predict(reg_cat_sex, newdata=newdata)]
 
-png(paste0(main_dir, "categorical_sex.png"))
 ggplot() +
   geom_point(data=Salaries, aes(x=yrs.since.phd, y=salary, color=sex), alpha=0.5) +
   geom_line(data=newdata, aes(x=yrs.since.phd, y=predicted_salary, color=sex), size=1) +
   labs(title="Multivariate Regression with Categorical Variables: Sex",
        x="Years Since Ph.D",
        y="Salary(USD)")
-graphics.off()
 
 ```
 
@@ -165,7 +162,7 @@ to this:
 Salaries[, list(salary, yrs.since.phd, is.male=ifelse(sex=="Male", 1, 0))]
 ```
 
-[^1]: Generally, unless the topic being studied is specifically focused on gender identity issues, data scientists still work in a paradigm where sex and gender are both binary. Some of this has to do with inherent societal biases, but some of it is a small numbers problem: even if you *were* to collect data on non-binary individuals, they would make up such a small subset of the overall sample that it would be almost impossible to say anything statistically relevant about them. This doesn't mean that we shouldn't try, however, and data science is slowly moving toward a less binary perspective. 
+[^1]: Generally, unless the topic being studied is specifically focused on gender identity issues, data scientists still work in a paradigm where sex and gender are both binary. Some of this has to do with inherent societal biases, but some of it is a small numbers problem: even if you *were* to collect data on non-binary individuals, they would usually make up such a small subset of the overall sample that it would be almost impossible to say anything statistically relevant about them. This doesn't mean that we shouldn't try, however, and data science is slowly moving toward a less binary perspective. 
 
 We haven't lost any information about our categorical variables, and now we have a dataset that's entirely numeric, so we can run a regression on it. Our new regression equation looks like this: 
 
@@ -201,7 +198,7 @@ As actually describing two different lines. For women, the line looks exactly th
 
 $$ salary = \beta_0 + \beta_1yrs.since.phd +  \varepsilon$$
 
-Whereas for men, the intercept value is uniformly higher, by a value of $\beta_0$:
+Whereas for men, the intercept value is uniformly higher, by a value of $\beta_2$:
 
 $$ salary = (\beta_0 +\beta_2) + \beta_1yrs.since.phd +  \varepsilon$$
 
