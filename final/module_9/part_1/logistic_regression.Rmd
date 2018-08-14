@@ -2,6 +2,7 @@
 
 # Logistic Regression
 
+**todo: modify this to go before any ml lingo, check how this lines up with the lecture in canvas**
 Logistic regression straddles the boundary between machine learning and statistics-- it's a classification algorithm, but it uses (statistical) regression techniques. Logistic regressions are easy to interpret if you're comfortable with natural logarithms, exponentiation, and odds-- let's review these topic before we get into the details of how logistic regression works. 
 
 ## Script for e/log definitions
@@ -14,25 +15,27 @@ Let's start by defining the number e.
 
 $$ e = 2.7182818284590452353602874713527... $$
 
-In mathematics, "e" doesn't represent a letter, it represents a number. Like pi, e is an irrational number-- that is, its decimal representation goes on forever with no repetitions or other patterns-- and also like pi, e is extremely important both in pure and applied mathematics. The first few digits of e are 2.71828. 
+In mathematics, "e" doesn't represent a letter, it represents a number. Like pi, e is an irrational number-- that is, its decimal representation goes on forever with no repetitions or other patterns-- and also like pi, e is extremely important both in pure and applied mathematics.
    
 
 ### Exponents
-Most of you are probably familiar with the idea of exponentiation, or taking a number "to the power" of another number.
+You may already be familiar with the idea of exponentiation, or taking a number "to the power" of another number.
 
 $$ b^n $$
 
-Exponentiation requires two values: the "base" value b, and the "exponent" n. This operation means "multiply b by itself n times". 
+Exponentiation requires two values: the "base" value b, and the "exponent" n. This operation means "multiply $b$ by itself $n$ times". 
 
 So, if our base is 10 and our exponent is 2, we multiply 10 by itself twice:
 
-$$ 10^2 = 10*10 = 100 $$ 
-
-Notice that you can have negative exponents, which is the same as dividing by a positive exponent:
+$$ 10^2 = 10*10 = 100 $$
+**todo: more clearly delineate this into the beginning/end of a rules list**
+You can have negative exponents, which is the same as dividing by a positive exponent:
 
 $$ 10^{-2}=\frac{1}{10^2} = \frac{1}{100} = 0.01 $$
 
 And, importantly, that you can have non-integer exponents, which it's easiest to calculate using a computer:
+
+**todo: break this down** 
 
 $$ 10^{1.5} = 31.62278$$ 
 
@@ -112,8 +115,10 @@ Remember:
 $$ ln(e^x) = x $$ 
 
 
-## Script for odds definitions
+## Odds
 Now, let's briefly define some terms associated with probability: *odds* and *odds ratio*
+
+**todo: start with probability reminder before moving to odds**
 
 A single *odds* is itself a ratio: the ratio of how likely a thing is to happen, compared to it not happening. If there are "3 to 1 odds" of something happening, it means that it will happen 3 out of 4 times, or that the probability of it happening is 75%. If something has a probability p of happening, the odds are defined as: 
 
@@ -124,6 +129,7 @@ $$ odds = \frac{0.25}{1-0.25} = \frac{0.25}{0.75} = 1/3 $$
 
 that is to say: 1 to 3, or 0.3333333.
 
+**todo: redo the example of how you would find these odds in the first place**
 An *odds ratio* is a ratio of two odds, and it's a useful way of comparing the odds for two different groups or scenarios. Let's say if you want to know whether men or women are more likely to purchase some product. Let's say the odds of a woman purchasing that product are 1 to 4, or 0.25 (note, this is still and *odds*, not a probability-- it's just being expressed as a decimal instead of a fraction). And let's say the odds of a man purchasing it are 1 to 3, or 0.33333. The *odds ratio* of a man purchasing that product compared to a woman is :
 
 $$ OR_{male} = \frac{male \ odds}{female \ odds} \frac{1/3}{1/4} = \frac{0.3333}{0.25} \approx 1.3333 $$
@@ -136,7 +142,7 @@ $$ OR_{female} = \frac{female \ odds}{male \ odds} \frac{1/4}{1/3} = \frac{0.25}
 
 We read this as, "a woman is 0.75 times as likely to purchase the product as a man is", or "a woman is 25% less likely to purchase the product than a man is".
 
-Notice that these two values are not exact mirrors of each other--when you're working with percent changes like this, your reference group matters. Odds ratios can't go below 0, but can go all the way up to infinity on the positive side. 
+Notice that these two values are not exact mirrors of each other--when you're working with percent changes like this, your reference group matters**todo: flesh this out way more**. Odds ratios can't go below 0, but can go all the way up to infinity on the positive side. 
 
 You can also calculate an odds ratio along a continuous variable, by comparing odds at two different points. Let's think about life expectancy. Say your probability of surviving past age 35 was only 80% in 1895, but rose up to 85% in 1896. The odds would be:
 
@@ -196,6 +202,8 @@ Let's stop right here, because this should look familiar. Remember that F(x) rep
 $$ \beta_0 + \beta_1x = ln\left(\frac{F(x)}{1-F(x)} \right)  $$
 
 Thats a *log odds*. Our regression equation is describing the *log odds* of an event occurring. Our beta nought will itself be a log odds, while all the other betas will be log odds *ratios*. 
+
+**todo: flesh out all of these steps more**
 
 The right hand side of this equation is called the logit function, by the way. It's the inverse of the logistic function. 
 
