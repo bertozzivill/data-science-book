@@ -9,7 +9,7 @@ I like this article because it walks through a lot of concepts we've already see
 
 You might be confused at what linear regression, the main tool of *classical* statistics, is doing in an article about machine learning, which we usually think of as "*not*-statistics". 
 
-Well, despite people trying to make a clear-cut distinction between machine learning and the rest of statistics, the truth is that the two have a lot of overlap. While there are some methods that are used almost exclusively in either field, things like regression (especially logistic regression, which we'll talk about next week) fall somewhere in the middle. I would argue that this article is **machine-learny** not because of the method used specifically, but rather because it takes a classical statistical method like regression and approaches it in a machine-learny way.  In particular:
+Well, despite people trying to make a clear-cut distinction between machine learning and the rest of statistics, the truth is that the two have a lot of overlap. While there are some methods that are used almost exclusively in either field, things like regression (especially logistic regression, which we talked about last section) fall somewhere in the middle. I would argue that this article is **machine-learny** not because of the method used specifically, but rather because it takes a classical statistical method like regression and approaches it in a machine-learny way.  In particular:
 
 1. It focuses on finding a generic algorithm to answer your question of interest, rather than a custom, highly-specified model. The actual algorithm for linear regression that a machine learner would use would *not* require you to input a specific regression equation like we did with the `lm()` function-- you would give it a dataset and and outcome variable and it would make its own regression equations out of all the other columns in the dataset.
 2. It focuses entirely on prediction: the goal is not to understand what components make a house valuable, but to accurately predict the price of a new house that you plug into the dataset. 
@@ -20,7 +20,7 @@ Machine learning grew out of artificial intelligence research, which has existed
 
 However, many of the tools that had been developed to try and make a "thinking" machine, tools that in some way tried to mimic the adaptability and ability to learn from new examples that real brains exhibit, could still be extremely useful. They only worked when you stuck them on highly specific problems, like determining whether or not an email is spam or deciphering handwriting, but they were versatile and robust. This is how machine learning was born. 
 
-For decades, machine learning stayed solidly in the wheelhouse of computer science, with statisticians and theoretical mathematicians pursuing independent goals. It's only in the last 10-15 years that these fields have begun to communicate more, to realize that they've independently discovered many of the same algorithms, and to collaborate in a large-scale way. 
+For decades, machine learning stayed solidly in the wheelhouse of computer science, with statisticians and theoretical mathematicians pursuing independent goals. It's only in the last 10-20 years that these fields have begun to communicate more, to realize that they've independently discovered many of the same algorithms, and to collaborate in a large-scale way. 
 
 There is no single, undisputed definition for "machine learning", but here's my favorite hand-wavey one: Machine learning is when you take a task that a human would be able to do easily, but slowly, and program a computer to do it really really quickly instead. 
 
@@ -32,6 +32,7 @@ As it turns out, most of the tasks that fall into the definition above are tasks
 
 ## Classes of Machine Learning: Supervised and Unsupervised Learning
 
+**todo: remove dependence on Geitgey paper**
 Geitgey covered supervised and unsupervised learning in his blog post, but it's an important concept so I want to review it again. 
 
 The key difference between supervised and unsupervised learning is the status of your *outcome variable*-- supervised learning needs an outcome variable, unsupervised learning doesn't. 
@@ -123,7 +124,7 @@ This type of validation method, in contrast to in-sample, is known as **out of s
 
 Out of sample validation is a fundamental aspect of machine learning-- no one will take you seriously if you don't use it. Fortunately, it's so fundamental that methods for out-of-sample validation are included in most of the machine learning packages and tools available for R. However, it's also fairly straightforward to build an out of sample validation method on your own-- we review that in the video below: 
 
-
+**todo: make this into text. Possibly move validation into its own section entirely?**
 
 
 
