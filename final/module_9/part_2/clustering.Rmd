@@ -14,7 +14,9 @@ This page, we're going to go over two simple machine learning algorithms, one su
 
 K-means is a clustering algorithm, which means that it groups datapoints based on how close to each other they are in some parameter space. You would use K-means if you wanted to split your data into a predefined number of groups, based on similarities across your variables.
 
-For example: when I was on a team running analyses on US counties (some of which you read about last week), we wanted to compare the life expectancies of twenty different "groups" of counties that were similar based on socioeconomic/demographic variables. So, we ran K-means with a K of 20 and input variables of race, income, poverty, education, etc. to come up with clusters such as "poor, uneducated, mostly white counties" or "affluent highly educated counties". Running K-means was a more rigorous way for us to do this than to categorize these counties by hand. 
+**todo: start with a simple by-hand sorting example first**
+
+For example: when I was on a team running analyses on US counties, we wanted to compare the life expectancies of twenty different "groups" of counties that were similar based on socioeconomic/demographic variables. So, we ran K-means with a K of 20 and input variables of race, income, poverty, education, etc. to come up with clusters such as "poor, uneducated, mostly white counties" or "affluent highly educated counties". Running K-means was a more rigorous way for us to do this than to categorize these counties by hand. 
 
 As mentioned last page, K-means is an unsupervised learning method, which means that it does NOT take the outcome variable into account when running its algorithm. You only have to give two inputs to a K-means algorithm:
 
@@ -91,7 +93,7 @@ Hey, that looks pretty good! Let's compare it to our original plot of Petal Leng
  
 [insert plot]
  
-These results show that these data are *highly clustered by species*. But note, that you *can* run K-means with different K values, and it will still pick clusters-- they just won't be as well-defined:
+These results show that these data are *highly clustered by species across the features provided*. But note, that you *can* run K-means with different K values, and it will still pick clusters-- they just won't be as well-defined:
 
 ```{r}
 ## K-means with K=5
@@ -132,9 +134,9 @@ With k-NN, that is NOT true. k-NN only has one step, really:
 
 Algorithmically, k-NN works like this:
 
-1. Get a set of data with a categorical outcome variable, like 'rank' in the `Salaries` dataset. Let's say we're using 'salary' and 'yrs.since.phd' as preditor variables.
-2. Get a datapoint for a professor whose rank you'd like to predict, knowing their salary and years since Ph.D.
-3. On the plot of "salary" vs "years since Ph.D", find the k closest pre-assigned datapoints to your value of interest, and note their rank. Here we take k=4. Three of the closest points are green, and one is blue. 
+1. Get a set of data with a categorical outcome variable, like 'rank' in the `Salaries` dataset. Let's say we're using 'salary' and 'yrs.since.phd' as predictor variables.
+2. Get the salary and years since Ph.D for a professor whose rank you'd like to predict.
+3. On the plot of "salary" vs "years since Ph.D", find the k closest pre-assigned datapoints to your value of interest, and note their rank. Here we take k=4. 
 4. Assign your new datapoint to whichever class was most dominant among those k "nearest neighbors".
  
  Things to note about k-NN:
@@ -143,6 +145,8 @@ Algorithmically, k-NN works like this:
 * When you run k-NN, you need to include both a set of reference datapoints and a set of points for which you want to predict (referred to as the train and test sets). Unlike linear regression, there's nothing to do if you're not predicting points!
  
 Let's work through a k-NN example with the `iris` dataset. Here, we're using all 4 quantitative variables to classify our points, so k-NN is finding nearest neighbors in a 4D space. 
+
+**todo: make sure you've explained validation before this point**
 
 ```{r, tidy=T}
 # load library for k-NN
@@ -195,7 +199,7 @@ ggplot(testing_set, aes(x=Petal.Length, y=Petal.Width)) +
 
 When we really increase the number of neighbors we look at, we start to see less accurate predictions near the boundary between versicolor and virginica. Your *k* value matters!
 
-Stay tuned next week for more supervised machine learning tools!
+**todo: conclusion**
 
 
 
