@@ -2,8 +2,6 @@
 
 # How Do Businesses Collect Your Data?
 
-Let's change something.
-
 As information school students, and citizens of the 21st century, you're probably aware: your data is being collected, all the time, mostly by businesses. But how do businesses collect your data, and why? 
 
 Broadly speaking, the goal of every business is the same: to make a profit. Data collection and data science play a wide range of roles in pursuit of this overarching goal, a sampling of which we'll go over here. Also, don't think of it as a bad thing that businesses are profit-driven-- they also deliver high-valued services to consumers in exchange for our data and/or our dollars. 
@@ -18,7 +16,7 @@ This type of large-scale data collection generates truly enormous amounts of dat
 
 
 ## A/B Testing
-One of the most common types of data collection for web-based businesses is **A/B testing**, or **split testing**. It's designed to answer the question, "What would happen to [some outcome variable, usually sales or page views] if I changed [some aspect of my site or app design]?" You could, of course, answer this question by simply making your design change across the whole site, and seeing how your outcome variable changes. For example, if Amazon want to know what happens to sales if they change the font size on their site, they could just change the font size and look at sales. 
+One of the most common types of data collection for web-based businesses is **A/B testing**, or **split testing**. It's designed to answer the question, "What would happen to [some outcome variable, usually sales or page views] if I changed [some aspect of my site or app design]?" You could, of course, answer this question by simply making your design change across the whole site, and seeing how your outcome variable changes. For example, if Amazon want to know what happens to sales if they change the font size on their site, they could just change the font size *for everyone* and look at sales over time. 
 
 This approach has two problems:
 
@@ -42,6 +40,8 @@ Almost every feedback survey you fill out will include this question, towards th
 $$ NPS =  \frac{(\# \ people \ rating \ 9 \ or \ 10 - \# \ people \ rating \ 6 \ or \ below)}{\# \ people \ who \ took \ survey}$$
 
 The NPS can range anywhere from -100 (if everyone rated you a 6 or below) to 100 (if everyone rated you 9 or 10). 
+
+**todo: more detail on why nps matters and how hard it is to get a high one**
 
 
 ## Ratings
