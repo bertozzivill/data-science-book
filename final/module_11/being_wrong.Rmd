@@ -1,15 +1,17 @@
 # (PART) Being Wrong{-} 
 
+**Todo: more serious wording, remove exclamation pts**
+
 # Being Wrong
 
-Please read this week's discussion paper before reading this page. 
+Please read this paper before reading this section. 
 
 Ionnidis gives us a nuanced and sobering introduction to the wide world of being wrong in statistics. Here, I want to jump off from his descriptions to go into more detail about *why* research is so often wrong-- what incentives lead us down roads of bias and competition that attenuate the value of our findings. I want to focus on three sources specifically: scientific publications, funding sources & universities, and scientific journalism. 
 
 ## Scientific Publications
 In theory the system of peer-reviewed scientific publishing is a fantastic idea. Papers don't get published until they go through a rigorous approval process by experts in the field! Journals and papers are assigned status based on how many other researchers cite them--a true meritocracy! Publishing results makes them available to a much broader audience than single authors simply sharing their results!
 
-Unfortunately, in practice, the process is dramatically messier. First off, almost all journals are for-profit organizations, so they're heavily incentivized to publish results that sell-- shiny, new, statistically significant results. Since authorship plays such an important role in hiring and retention at universities, researchers are incentivized to generate results that will make it to the high-impact journals. And citation-based metrics of excellence are gamed by extensive self-citation. 
+Unfortunately, in practice, the process is dramatically messier. First off, almost all journals are for-profit organizations, so they're heavily incentivized to publish results that sell-- shiny, new, statistically significant results. Since authorship plays such an important role in hiring and retention at universities, researchers are incentivized to generate results that will make it to the high-impact journals. Citation-based metrics of excellence are gamed by extensive self-citation. 
 
 Competition for publication in top journals discourages cooperation and data-sharing between groups, and emphasis on producing novel results discourages important replication studies. Furthermore, many academic field are split into two or more competing philosophies, so which camp winds up reviewing your paper could have a large impact on whether or not it gets published. 
 
@@ -39,6 +41,8 @@ And scientific journalism is no less prone to sensationalism than academic journ
 
 Finally, as we've seen with the latest political climate, once a false result makes waves in popular culture, it's incredibly hard to quash. Academic journals can retract a paper, but it's impossible to retract an idea from someone's mind. 
 
+**todo: mention alcohol paper as a great recent example**
+
 
 ## The Silver Lining
 
@@ -65,7 +69,7 @@ A larger challenge: **acknowledge your own fallibility**. We all *hate* being wr
 
 ## Parting Thoughts
 
-It's been a long 11 weeks. Thank you for your thoughtful insights, hard work, and patience at the multiple typos in my problem sets. I hope that you've gained a lot of practical quantitative knowledge in this class, but more than anything, I hope you've learned this:
+It's been a long book. Thank you for your thoughtful insights, hard work, and patience at the multiple typos in my problem sets. I hope that you've gained a lot of practical quantitative knowledge in this class, but more than anything, I hope you've learned this:
 
 * Be your own harshest critic. 
 * Be skeptical of every paper, map, and plot: they are all lying to you in some way, and you should understand how. 
