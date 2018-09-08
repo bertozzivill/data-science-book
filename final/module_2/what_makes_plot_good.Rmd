@@ -20,10 +20,10 @@ And making visual representations of them:
 
 `r make_fig("program_stats.png")`
 
-Data visualization is more than just a tool in the data scientist's back pocket: it's an essential component of understanding your data. We as humans cannot easily find patterns or trends by looking at rows and rows of numbers, but we are incredibly good at finding patterns in plots. Our brains are also easily fooled, however. This makes visualization an incredibly powerful tool that you should use with care and caution. 
+Data visualization is more than just a tool in the data scientist's back pocket: it's an essential component of understanding your data. We as humans cannot easily find patterns or trends by looking at rows and rows of numbers, but we are incredibly good at finding patterns in plots. Our brains are also easily fooled, however-- it's easy to come to incorrect conclusions based on a poorly (or even deceptively) designed figure. This makes visualization an incredibly powerful tool that you should use with care and caution. 
 
- 
-Data visualization works by **encoding** the values in your dataset, which are just numbers and words, into spaces, colors, and shapes. For example, let's think about the plot above, and the dataset it comes from. The "stats_background" column is *encoded* in the x-axis, with the position of the bars. To add extra emphasis, that same column is also encoded in the *color* of the bars. The y-axis is encoding a *count* variable: how many rows there are in the dataset for each value of "stats_background". This is computed automatically by the computer, so there's no column for it. We can tell how many people there are of each statistical background because that "count" variable is encoded in the *height* of the bars. The "programmer" column is encoded by *subplots*, also knowns as *faceting*. In other words, our plot is actually two plots: one for people with a programming background, and one without. The "program" column is not used in this plot.
+
+Data visualization works by **encoding** the values in your dataset, which are just numbers and words, into structured colors and shapes. For example, let's think about the plot above, and the dataset it comes from. The "stats_background" column is *encoded* in the x-axis, with the position of the bars. To add extra emphasis, that same column is also encoded in the *color* of the bars. The y-axis is encoding a *count* variable: how many rows there are in the dataset for each value of "stats_background". This is computed automatically by the computer, so there's no column for it. We can tell how many people there are of each statistical background because that "count" variable is encoded in the *height* of the bars. The "programmer" column is encoded by *subplots*, also knowns as *faceting*. In other words, our plot is actually two plots: one for people with a programming background, and one without. The "program" column is not used in this plot.
 
 Let's go over the encodings in this plot again: 
 
@@ -47,9 +47,9 @@ Position on the x axis		# of years since Ph.D
 Position on the y axis		Salary
 Color of point		Rank
 Shape of point		Sex
-This plot shows that there seems to be an association between years since Ph.D and salary. It would have been much harder to see that simply by looking at the dataset!
+This plot shows that there seems to be an association between years since Ph.D and salary. It would have been much harder to see that simply by looking at the dataset--visualization is an essential tool for pattern-finding in datasets. 
 
-Also notice the importance of **labeling** in understanding this plot. Between the title, the axis labels, and the legend labels, we can figure out everything about how this plot is encoded. Good labeling is key to making understandable figures.
+Also notice the importance of **labeling** in understanding this plot. Between the title, the axis labels, and the legend labels, we can figure out everything about how this plot is encoded, **but** there isn't so much text that we get overwhelmed. Good labeling is key to making understandable figures.
 
 **Maps** are a special type of visualization in which the x and y axes encode latitude and longitude. More about maps next module. 
 
@@ -62,12 +62,15 @@ Here's the main takeaway of Cleveland's work:
 
 `r make_fig("cleveland_plot.png")`
 
-This figure shows, in increasing order from left to right and top to bottom, the ease with which our brains understand how data is encoded. We are better at accurately gauging the difference in position between two points than we are in gauging the difference in the size of two circles, or between two different shades of a color. This plot gives us some good guidelines for how to encode data in our own visualizations: **don't like this** try to encode important or subtle values in position and length, and put less valuable or super-obvious trends into hard-to-interpret encodings like shade or color. If at all possible, the general wisdom is to stay away from 3D representations entirely; our brain is really bad at understanding how volume is encoded, and it's usually not worth the effort. 
+This figure shows, in increasing order from left to right and top to bottom, the ease with which our [^1] brains understand how data is encoded. We are better at accurately gauging the difference in position between two points than we are in gauging the difference in the size of two circles, or between two different shades of a color. This framework gives us general guidelines for how to encode data in our own visualizations: try to encode important or subtle values in position and length, and put less valuable or super-obvious trends into hard-to-interpret encodings like texture or color. If at all possible, the general wisdom is to stay away from 3D representations entirely; our brain is really bad at understanding how volume is encoded, and it's usually not worth the effort. You should also be careful how you use color in your plots: many color schemes are not friendly to red-green colorblind individuals, and our brains can distinguish more finely between shades of some colors (like green) than others (like blue or yellow).
 
- You should also be careful how you use color in your plots: many color schemes are not friendly to red-green colorblind individuals, and our brains can distinguish more finely between shades of some colors (like green) than others (like blue or yellow).
+Guidelines are not the same as rules, and a number of beautiful and effective visualizations bend some or all of these suggestions, but it's important to grasp these fundamentals before exploring how to modify them. See the end of the chapter for more resources on data visualization theory and practice. 
+
+[^1]: I'm being a bit cavalier with the term "our brains" here. Cleveland conducted most of his early surveys on 55 subjects defined as falling into "two categoris: (1) a group of females, mostly housewives, without substantial technical experience; (2) a mixture of males and females with substantial technical training and working in technical jobs." Given that he performed this work at Bell Labs in the early 1980s, these subjects were probably all white, American, and living in the New Jersey area. Can his findings safely be extended to make claims about how people from other cultures and times perceive images? As we'll discuss in a later section, questions like these are crucial to resonsible statistics. 
+
 
 ## What Makes a Good Visualization?
-Edward Tufte, another famed data visualizer, has the following requirements for a good data visualization. He says a good graphic should:
+Edward Tufte, another famed data visualizer, has the following requirements for a good data visualization. He says a good graphic should [todo: cite book]:
 
 * show the data;
 * induce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production or something else;
@@ -91,7 +94,7 @@ Obviously, most visualizations pick and choose from this list of requirements; n
 
 Tufte thinks this is the best data visualization ever made. Designed by Charles Minard in 1869, it describes Napoleon's march on Russia. This is a mix between a map and a classical plot; the physical spaces are connected by a band that shows the direction of Napoleon's army. The width of the band indicates the size of the army, and color encodes direction-- the brown bands are when he's marching toward Russia, the black bands are when he's marching back. Additionally, the chart at the bottom indicates temperature (many of Napoleon's men died of exposure). 
 
-While this plot has many excellent qualities (**list them**), it also has issues: A large block of text draws the eye unnecessarily from the rest of the page; it takes time and a long explanation to understand what the plot is showing; the changes in direction of the bands make it difficult to compare different widths. 
+This plot has many excellent qualities: it uses color effectively and engagingly, it displays geographic, temporal, and volumetric data in an efficient way, and it tells a dramatic visual story. But it also has issues: A large block of text draws the eye unnecessarily from the rest of the page; it takes time and a long explanation to understand what the plot is showing; the changes in direction of the bands make it difficult to compare different widths. 
 
 **todo: replace with a different figure. **
 `r make_fig("gbd_compare.png")`
