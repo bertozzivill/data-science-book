@@ -51,7 +51,7 @@ This plot shows that there seems to be an association between years since Ph.D a
 
 Also notice the importance of **labeling** in understanding this plot. Between the title, the axis labels, and the legend labels, we can figure out everything about how this plot is encoded, **but** there isn't so much text that we get overwhelmed. Good labeling is key to making understandable figures.
 
-**Maps** are a special type of visualization in which the x and y axes encode latitude and longitude. More about maps next module. 
+**Maps** are a special type of visualization in which the x and y axes encode latitude and longitude. More about maps next section. 
 
  
 

@@ -11,7 +11,7 @@ make_fig <- function(fname, dir=figure_dir){
 
 ## What is a Map?
 **todo: add links?**
-The word "map" has a wide range of definitions, some of which are very general: one of the definitions of "to map" is simply to "be associated with or linked to". However, for our purposes when I talk about "mapping" I'm describing **a diagrammatic representation of an area of land or sea**. In this class, when we talk about maps we're explicitly talking about making plots that represent physical space. 
+The word "map" has a wide range of definitions, some of which are very general: one of the definitions of "to map" is simply to "be associated with or linked to". However, for our purposes when I talk about "mapping" I'm describing **a diagrammatic representation of an area of land or sea**. In this section, when we talk about maps we're explicitly talking about making plots that represent physical space. 
 
 However, even this somewhat restrictive definition still gives us an incredible body of work to consider: there are thousands of different type of map, and we'll only have space to explore a few examples here.
 
@@ -32,13 +32,13 @@ There are dozens of different type of projection, each with its own pros and con
 
 `r make_fig("Mercator_projection.jpg")`
 
-The distortion at the poles is especially clear in this projection, which makes Greenland look as large as Africa even though the Arctic island in reality is only a fraction as large as the continent. This projection became extremely popular throughout the nineteenth and twentieth centuries: the British liked how large it made various elements of the British Empire look, and (a little later), Reagan liked that it made the USSR look huge and threatening compared to the US. 
+The distortion at the poles is especially clear in this projection, which makes Greenland look as large as Africa even though the Arctic island in reality is only a fraction as large as the continent. This projection became extremely popular throughout the nineteenth and twentieth centuries: the British liked how large it made various elements of the British Empire look, and (a little later), Reagan liked that it made the USSR look huge and threatening compared to the US [^1]. 
+
+[^1]: I got this tidbit about the Mercator Projection, the title of this section, and much of my other map knowledge from the delightful book How to Lie With Maps. 
 
 However, in more recent decades the Mercator Projection has been heavily criticized for the way it diminishes the perceived size of many developing nations, especially those in Africa and Southeast Asia. As a result, in recent years many groups have switched to using the more politically representative Robinson projection. 
 
 Randall Munroe has a brief and amusing rundown of different map projections [here](https://xkcd.com/977/).
-
-**todo: add reference to how to lie with maps book**
 
 
 ## Color
@@ -65,13 +65,11 @@ And of one with a multi-hue scale (here blue and green indicate low population d
 
 `r make_fig("choropleth_pop_usa.jpg")`
 
-Each of these types of map can be misleading, depending on the color choices you make. For example, if the color progression on either of the choropleth maps were flipped, you would be mistakenly lead to believe (because of the way we process color) that the middle of the country has the highest population density. 
+Each of these types of map can be misleading, depending on the color choices you make. For example, if the color progression on either of the choropleth maps were flipped, you would be mistakenly lead to believe (because of the way we've learned to interpret color in maps like this) that the middle of the country has the highest population density. 
 
 How you choose your color bins also matters: notice that in the top choropleth map, most counties from Nevada to the Dakotas are the same color (indicating a population density under 10 per square mile), whereas in the lower map there are two hues to represent this range: a blue-green for extremely low densities of <1 person per square mile, and a grassier green for densities between 1 and 10 people per square mile. Distinctions such as these can dramatically alter some map results. 
 
- 
-
-And then sometimes mapmakers just misuse color. Here's one of the most egregious examples, where the plot on the left shows change in population over time, and the one on the right shows population in the thousands:
+And sometimes mapmakers just misuse color. Here's one of the most egregious examples, where the plot on the left shows change in population over time, and the one on the right shows population in the thousands:
 
 `r make_fig("bad_pop_map.gif")`
 
@@ -90,11 +88,11 @@ I've described maps as explicitly projecting latitude and longitude onto their x
 
 `r make_fig("light_rail_simple.jpg")`
 
-Hopefully you all recognize this as a map of the light rail stations in King County, but this is also a map of light rail stations in King County:
+This is a common map of the light rail stations in King County, Washington. But this is also a map of light rail stations in King County:
 
 `r make_fig("light_rail_complex.jpg")`
 
-Which one of these is more "correct"? The second one certainly is more geographically accurate, but one could make a strong argument that it includes unnecessary information for someone simply trying to figure out where to get off the train. The first map generates a **simplified geography** of the region it's displaying in order to more effectively convey important information: the relative location of light rail stations. 
+Which one of these is more "correct"? The second one certainly shows more geographic detail, but one could make a strong argument that it includes unnecessary information for someone simply trying to figure out where to get off the train. The first map generates a **simplified geography** of the region it's displaying in order to more effectively convey important information: the relative location of light rail stations. 
 
 The use of simplified geographies is particularly popular for visualizations of public transit systems. One of the earliest and most famous example of this was Harry Beck's 1931 map of the London Underground:
 
@@ -122,4 +120,4 @@ Iconography can also be used to generate maps for propaganda, as this 1877 map o
  
 
 ## Conclusion
-There is no way to make a completely "honest" map. But much of the information data scientists work with is spatial, and must be understood and interpreted with that spatial context in mind. Maps are an invaluable tool to help us understand and convey spatial trends in our data, but maps are also extremely sensitive to misuse. Exercise caution! 
+There is no way to make a completely "honest" map. But much of the information data scientists work with is spatial, and must be understood and interpreted with that spatial context in mind. Maps are an invaluable tool to help us understand and convey spatial trends in our data, but maps are also extremely sensitive to misuse. Exercise caution when using them. 
