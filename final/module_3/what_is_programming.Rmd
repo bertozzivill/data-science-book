@@ -5,9 +5,12 @@
 ## What is a Programming Language?
  Imagine that a computer is a brain. A brain kind of like yours. You know at least one language, and might know more than one. Each language you know has different grammar, syntax, and vocabulary, and you pick which language to use depending on what the circumstances require, right? Computers use language in a (kind of) similar way. So when we "use R" on a computer, what that means is that we're communicating with all the circuits and processing power of the computer through the specific syntax and format of the R language, and assuming our computer "speaks" R, the computer will do what we ask it to and return the results. 
 
-**TODO: add 'magic' analogy**
-
 This process of communicating with a computer via a specific, predefined syntax is called programming. And that specific, predefined syntax is called a programming language. 
+
+Now, the analogy to a real-world, spoken language breaks down fairly quickly. A key feature of spoken and written language is that its rules are loose and open to interpretation and understanding. If I say [ungrammatical sentence], you can understand what it means even though my grammar is not precisely correct. Any "single language" is in fact replete with dialects and nuances of usage that play with the "rules" of grammar. 
+
+
+**todo: magic analogy**
 
 
 ## Language vs. Software
