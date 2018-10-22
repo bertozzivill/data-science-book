@@ -13,6 +13,8 @@ make_fig <- function(fname, dir=figure_dir){
 **todo: add links?**
 The word "map" has a wide range of definitions, some of which are very general: one of the definitions of "to map" is simply to "be associated with or linked to". However, for our purposes when I talk about "mapping" I'm describing **a diagrammatic representation of an area of land or sea**. In this section, when we talk about maps we're explicitly talking about making plots that represent physical space. 
 
+
+
 However, even this somewhat restrictive definition still gives us an incredible body of work to consider: there are thousands of different type of map, and we'll only have space to explore a few examples here.
 
 Every map is a type of data visualization: one in which the "x-axis" encodes longitude, the "y-axis" encodes latitude, and (usually) color encodes the data we're interested in representing. However, the purpose of maps can differ widely, and some even intentionally distort the latitude/longitude relationship. Due to the impossibility of accurately representing a curved surface (like the Earth's) on a 2D plane (like a page or screen), every map will be "wrong" in one way or another. This flexibility of representation makes maps an extremely powerful tool for storytelling and data visualization, but also for propaganda and misleading messages.
