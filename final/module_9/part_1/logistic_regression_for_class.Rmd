@@ -1,0 +1,283 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Logistic Regression
+
+Logistic regression straddles the boundary between machine learning and statistics-- it's a classification algorithm, but it uses (statistical) regression techniques. Logistic regressions are easy to interpret if you're comfortable with natural logarithms, exponentiation, and odds-- let's review these topic before we get into the details of how logistic regression works. 
+
+##  e/log definitions
+
+Definitions: e, exponents, logs
+
+
+### e
+Let's start by defining the number e.
+
+$$ e = 2.7182818284590452353602874713527... $$
+
+In mathematics, "e" doesn't represent a letter, it represents a number. Like pi, e is an irrational number-- that is, its decimal representation goes on forever with no repetitions or other patterns-- and also like pi, e is extremely important both in pure and applied mathematics.
+   
+
+### Exponents
+You may already be familiar with the idea of exponentiation, or taking a number "to the power" of another number.
+
+$$ b^n $$
+
+Exponentiation requires two values: the "base" value b, and the "exponent" n. This operation means "multiply $b$ by itself $n$ times". 
+
+So, if our base is 10 and our exponent is 2, we multiply 10 by itself twice:
+
+$$ 10^2 = 10*10 = 100 $$
+You can have negative exponents, which is the same as dividing by a positive exponent:
+
+$$ 10^{-2}=\frac{1}{10^2} = \frac{1}{100} = 0.01 $$
+
+And, importantly, that you can have non-integer exponents, which it's easiest to calculate using a computer:
+
+
+$$ 10^{1.5} = 31.62278$$ 
+
+
+The base value, b, can also be whatever you want it to. it's very common to have b take the value of e: 
+
+$$ e^x $$
+
+For any exponentiated value b, b^1 is always b and b^0 is always 1:
+
+$$ b^1=b \\b^0 = 1 $$
+
+
+Exponentiated values have the nice property that addition in the exponents can also be expressed as multiplication in the bases:
+
+$$ e^{a + b} = e^a * e^b $$
+
+Here's a concrete example of this:
+
+$$ 10^{2+3} = 10^5 =  100,000 \\ 10^{2+3} = 10^2 * 10^3 = 100 * 1000 = 100,000 $$ 
+
+### Logarithms
+
+#### Inverse function
+An *inverse function* is something that does the opposite of some other function. Let's say we have a funtion f(x) that takes a value x and multiplies it by 2:
+
+$$ f(x) = 2x $$
+
+The *inverse function* of f(x) would be a function that *divides* a value by 2: 
+
+$$ g(x) = x/2 $$
+
+You know that two functions are the inverse of each other when performing them in sequence recovers the original x value. For example, let's say our x value is 4. Let's run f(x) on this value, *then* run g(x) on the output of that function:
+
+$$ f(4) = 2*4 = 8 \\ g(8) = 8/2 = 4$$
+
+you can also see this by nesting the two functions inside each other:
+
+$$ g(f(x)) = \frac{f(x)}{2} = \frac{2x}{2} = x $$
+
+#### Logarithms 
+In the same way that x/2 is the inverse function of 2x, a *logarithm* is the inverse function to exponentiation. Like exponentiation, logarithms have a *base*, and only exponential functions and logarithmic functions with the *same base* are inverses of each other. So:
+
+$$ log_{10}(x) $$ 
+
+and 
+
+$$ 10^x $$ 
+
+Are inverse functions to each other, but
+
+$$ log_{10}(x) $$ 
+
+and 
+
+$$ e^x $$ 
+are *not* inverse functions to each other. 
+
+When you run a logarithmic function with a certain base b on a number x, it returns *the number you would need to exponentiate b by in order to get x*. For example, log base 10 of 100 is 2:
+
+$$ log_{10}(100) = 2$$ 
+
+What this means is: "You have to raise 10 to the power of 2 in order to get 100"
+
+You can see from this example how the two functions are inverse to each other:
+
+$$ log_{10}(10^2) = log_{10}(100) = 2 $$ 
+
+The function e^x is so common that its inverse function log base e is called the "natural logarithm"-- it's often written shorthand as simply ln(x). 
+
+$$ e^x $$
+
+$$log_e(x) \\ ln(x)$$
+
+Remember: 
+
+$$ ln(e^x) = x $$ 
+
+
+## Odds
+Now, let's briefly define some terms associated with probability: *odds* and *odds ratio*
+
+
+A single *odds* is itself a ratio: the ratio of how likely a thing is to happen, compared to it not happening. If there are "3 to 1 odds" of something happening, it means that it will happen 3 out of 4 times, or that the probability of it happening is 75%. If something has a probability p of happening, the odds are defined as: 
+
+$$ odds = \frac{p}{1-p} $$
+If something has a 25% chance of happening, the odds are :
+
+$$ odds = \frac{0.25}{1-0.25} = \frac{0.25}{0.75} = 1/3 $$
+
+that is to say: 1 to 3, or 0.3333333.
+
+An *odds ratio* is a ratio of two odds, and it's a useful way of comparing the odds for two different groups or scenarios. Let's say if you want to know whether men or women are more likely to purchase some product. Let's say the odds of a woman purchasing that product are 1 to 4, or 0.25 (note, this is still and *odds*, not a probability-- it's just being expressed as a decimal instead of a fraction). And let's say the odds of a man purchasing it are 1 to 3, or 0.33333. The *odds ratio* of a man purchasing that product compared to a woman is :
+
+$$ OR_{male} = \frac{male \ odds}{female \ odds} \frac{1/3}{1/4} = \frac{0.3333}{0.25} \approx 1.3333 $$
+
+What the odds ratio means is that a man is 1.3333 times as likely to purchase that product as a woman is-- or, percentage-wise, that a man is 33.33% more likely to purchase it. 
+
+If we want to know the odds ratio of a *woman* purchasing the product instead, we just flip the equation:
+
+$$ OR_{female} = \frac{female \ odds}{male \ odds} \frac{1/4}{1/3} = \frac{0.25}{0.3333} = 0.75 $$
+
+We read this as, "a woman is 0.75 times as likely to purchase the product as a man is", or "a woman is 25% less likely to purchase the product than a man is".
+
+Notice that these two values are not exact mirrors of each other--when you're working with percent changes like this, your reference group matters. Odds ratios can't go below 0, but can go all the way up to infinity on the positive side. 
+
+You can also calculate an odds ratio along a continuous variable, by comparing odds at two different points. Let's think about life expectancy. Say your probability of surviving past age 35 was only 80% in 1895, but rose up to 85% in 1896. The odds would be:
+
+$$ odds_{1895} = \frac{0.8}{1-0.8} = 4 $$
+$$ odds_{1896} = \frac{0.85}{1-0.85} = 5.6667 $$
+
+To get the odds ratio of those two years, you would do:
+
+$$ OR = \frac{odds_{1896}}{odds_{1895}} = \frac{5.6667}{4} = 1.417 $$
+That is: in 1896, you were 1.417 times as likely to live past age 35 as you were in 1895, or: You were 41.7% more likely to live past 35 in 1896 as you were in 1895. 
+
+One more note: You remember our old friend the natural log, ln()? Let's say for some reason that someone takes the natural log of an odds or odds ratio, and gives that to you instead of the actual odds. This is called a "log odds" (or "log odds ratio", respectively), and it's easy to recover the original value: just take the exponent! 
+
+So, if I gave you a log odds ratio of 0.3483, you could recover the original odds ratio by simply doing:
+
+$$ e^{0.3483} = 1.417 $$ 
+
+This will become relevant later.
+
+
+## Logistic regression intro/motivation
+
+Why have I spent all this time bringing back awful memories from your high school precalc class? We'll pull it all together here. 
+
+Let's say you want to run a regression, but your outcome variable isn't continuous like "salary" or "tip". Instead, it's *binary*-- a yes/no or 0/1 variable, like "did this person survive?" or "did this person get accepted to medical school?" The problem here is that you have to take the continuous variable of your predictor, and *map it* to a space between 0 and 1. Traditional linear regression doesn't let you do this-- it takes all possible values of your predictor variable and maps them to a space from negative infinity to infinity. 
+
+Luckily, there's a super convenient function we can use to map our continuous predictor variable onto an output variable that has to be between zero and one: the *logistic function*: 
+
+$$  \frac{1}{1+e^{-t}}$$
+Which looks like this: 
+
+[see video for logistic plot]
+
+We can make this into a regression by replacing that t value with a regression equation: 
+
+$$ F(x) = \frac{1}{1+ e^{-(\beta_0 + \beta_1x)}}  $$
+
+Now, the variables we input into our regression will be mapped to a value between 0 and 1. This value can be interpreted as the probability of the event in question occurring (survival, admittance to med school, etc). You can convert these to binary values with a cutoff: usually, we say that if the probability is less that 0.5, we predict 0, and if it's greater than 0.5, we predict 1. So if we run logistic regression on whether or not a student gets admitted to med school based on their undergrad GPA, and then we predict a probability of getting into med school for a new student, we would predict that the student *does* get into med school if her regression prediction was above 0.5, and predict that she doesn't get into med school if her regression prediction was below 0.5. 
+
+That's all well and good for prediction, but what on earth does this equation actually *mean*? What do the beta values mean? 
+
+We can answer that question by rearranging the logistic regression equation to isolate just the part with the betas:
+
+$$ F(x) = \frac{1}{1+ e^{-(\beta_0 + \beta_1x)}}  $$
+$$ F(x) (1+ e^{-(\beta_0 + \beta_1x)}) = 1  $$
+
+$$ 1+ e^{-(\beta_0 + \beta_1x)} = \frac{1}{F(x)}  $$
+$$ e^{-(\beta_0 + \beta_1x)} = \frac{1}{F(x)} -1 = \frac{1-F(x)}{F(x)}  $$
+But remember that e^-x is just 1/e^x, so:
+
+$$ \frac{1}{e^{(\beta_0 + \beta_1x)}} = \frac{1-F(x)}{F(x)}   $$
+And doing some more switching:
+$$ e^{(\beta_0 + \beta_1x)} = \frac{F(x)}{1-F(x)}   $$
+Let's stop right here, because this should look familiar. Remember that F(x) represents a *probability*. So the right hand side of this equation, F(x) divided by 1-F(x), represents an *odds*. So when we finally solve for our beta equation:
+
+
+$$ \beta_0 + \beta_1x = ln\left(\frac{F(x)}{1-F(x)} \right)  $$
+
+Thats a *log odds*. Our regression equation is describing the *log odds* of an event occurring. Our beta nought will itself be a log odds, while all the other betas will be log odds *ratios*. 
+
+
+The right hand side of this equation is called the logit function, by the way. It's the inverse of the logistic function. 
+
+
+Let's use our example from before: We're trying to predict whether or not a student will get into medical school, and we have two explanatory variables: the gender of the student, and their GPA. 
+
+Let's look at gender first. If "female" is the baseline category, as before, our beta-1 variable will represent *males*. Let's say we run this regression, and get an intercept of -1.609 and a beta 1 of  0.4054. Beta-0 is the *log odds* of a female student getting into med school. We can convert it back into an odds by taking the exponent: e^-1.609 = 0.2. 
+
+$$  e^{-1.609} = 0.2 $$
+
+Beta-1 is the *log odds RATIO* of a male student getting into med school. If we exponentiate this value, we get :
+
+$$  e^{0.4054} = 1.5 $$
+So, this regression is saying that males have 1.5 times the odds of getting into med school as females do. (note: this is not true, I just made these numbers up as an example).
+
+---
+Now, let's imagine that we're using GPA as a predictor variable instead. Let's say we get a beta-0 of -9.21, and a beta-1 of 1.163. 
+As with our linear regression, the intercept value corresponds to what we get when our predictor variable equals zero. Here, our intercept value beta-0 is the *log odds* of getting into med school when your GPA is 0. We should expect this to be *extremely* unlikely:
+
+$$ \beta_0 \ odds = e^{-9.21} = 0.0001 $$ 
+And indeed, our odds are extremely low! 
+
+Our exponentiated beta-1 value tells us *the odds ratio of a one-point bump in GPA*. A whole point increase is huge in GPA terms-- that's the difference between a 2.0 and a 3.0. So, we should expect this value to be pretty big.
+
+$$ \beta_1 \ OR = e^{1.163} = 3.2 $$
+This says that a 1-unit increase in GPA multiplys our odds of getting into medical school *3.2 times* ! That's an increase in probability of 220%! 
+
+Practically speaking (as with linear regression), we rarely think much about the intercept value. Most of the focus is on betas greater than zero)
+
+I know there was a lot of math in this video, but if you remember nothing else, remember this: **exponentiate your beta values to get odds ratios. Except beta-0, exponentiate that to get an odds. Interpretations of categorical/continuous variabls are analogous to linear regression. **  
+
+## Example in R
+
+
+
+```{r}
+# Logistic regression example
+## Loading libraries
+library(data.table)
+library(ggplot2)
+
+## Load data
+data("mtcars")
+mtcars<- data.table(mtcars)
+
+## rename "vs" variable
+setnames(mtcars, "vs", "is.straight.engine")
+
+## make new auto/manual variable
+mtcars[, shift.type:= ifelse(am==1, "manual", "auto")]
+
+## constrict dataset to only variables of interest
+mtcars <- mtcars[, list(is.straight.engine, mpg, shift.type)]
+
+## logistic regression: mpg
+lr_mpg <- glm(is.straight.engine~mpg, data=mtcars, family=binomial)
+summary(lr_mpg)
+
+#plot results
+mtcars[, pred.straight.mpg:= predict(lr_mpg, type="response")]
+ggplot(mtcars, aes(x=mpg)) +
+  geom_point(aes(y=is.straight.engine))+
+  geom_line(aes(y=pred.straight.mpg), color="blue", size=1)
+
+
+## logistic regression: mpg and type
+lr_mpg_type <- glm(is.straight.engine~mpg + shift.type, data=mtcars, family=binomial)
+summary(lr_mpg_type)
+
+
+## plot results
+mtcars[, pred.straight.mpg.type:= predict(lr_mpg_type, type="response")]
+ggplot(mtcars, aes(x=mpg)) +
+  geom_point(aes(y=is.straight.engine, color=shift.type))+
+  geom_line(aes(y=pred.straight.mpg.type, color=shift.type), size=1)
+
+
+
+```
